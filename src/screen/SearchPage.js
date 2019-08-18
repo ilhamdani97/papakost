@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, FlatList, Text, Dimensions, TouchableOpacity,Share,ScrollView} from 'react-native'
-import { Appbar} from 'react-native-paper'
+import { StyleSheet, TextInput, FlatList, Text, Dimensions, TouchableHighlight,Share,ScrollView} from 'react-native'
+import { Appbar,IconButton} from 'react-native-paper'
 import { View } from 'native-base';
-import { Card, ListItem, Button, Icon} from "react-native-elements";
+import { Card,Icon} from "react-native-elements";
 
 
 const {width,height} = Dimensions.get('window');
@@ -102,7 +102,7 @@ constructor(props) {
                         data={this.state.data}
                         renderItem={({ item: rowData }) => {
                         return (
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailPage', {rowData:rowData})} >
+                            <TouchableHighlight onPress={() => this.props.navigation.navigate('DetailPage', {rowData:rowData})} >
                                 <View style={{ flex:1,width:width*96/100,marginLeft:width*2/100,marginRight:width*2/100}} >
                                     <Card style={{borderRadius:8}}
                                         image={{ uri: rowData.cover }}
@@ -130,13 +130,50 @@ constructor(props) {
                                         </View>
                                         </Card>
                                 </View>
-                            </TouchableOpacity>
+                            </TouchableHighlight>
                         );
                         }}
                     />
                 </View>
             </ScrollView>
-
+            <View style={{flex:1}}>
+                <View style={styles.filter}>
+                    <View style={{flex: 1, flexDirection: 'row'}}>
+                    
+                        <View style={{width:width*8/100,marginTop:18,marginLeft:5}}>
+                        <Icon
+                            name='ios-funnel'
+                            type='ionicon'
+                            color='#FF9800'
+                        />
+                        </View>
+                    <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')} underlayColor="white">
+                        <View style={{width:width*14/100,marginLeft:4,marginTop:19}}>
+                            <Text style={{fontSize:16}}>Filter</Text>
+                        </View>
+                    </TouchableHighlight>
+                        <View
+                            style={{
+                            borderLeftWidth: 0.7,
+                            borderLeftColor: '#9E9E9E',
+                            }}
+                        />
+                    
+                        <View style={{width:width*10/100,marginTop:18,marginLeft:8}}>
+                        <Icon
+                            name='ios-redo'
+                            type='ionicon'
+                            color='#FF9800'
+                        />
+                        </View>
+                    <TouchableHighlight onPress={() => this.props.navigation.navigate('HistoryBooking')} underlayColor="white">
+                        <View style={{width:width*14/100,marginLeft:4,marginTop:19}}>
+                            <Text style={{fontSize:16}}>Sort</Text>
+                        </View>
+                    </TouchableHighlight>
+                    </View>     
+                </View>
+            </View>                 
             </View>
         );
     }
@@ -145,6 +182,21 @@ constructor(props) {
 const styles = StyleSheet.create({
     header: {
         width: 280,
-
+    },
+    filter:{
+        borderBottomWidth: 0,
+        shadowColor: '#9E9E9E',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 4,
+        elevation: 1,
+        borderRadius:8, 
+        position:'absolute',
+        bottom:0,
+        alignSelf:'center', 
+        backgroundColor:"#FFFFFF",
+        width: width*50/100,
+        height:60,
+        marginBottom:20
     }
 })
