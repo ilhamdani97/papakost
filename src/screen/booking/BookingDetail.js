@@ -28,18 +28,18 @@ class BookingDetail extends Component {
       <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
       <View style={{flex: 1, flexDirection: 'row',marginTop:10}}>
         <View style={{width:width*65/100}} >
-          <Text style={{fontWeight:"bold"}} >{data.title}</Text> 
+          <Text style={{fontWeight:"bold"}} >{data.name_kost}</Text> 
           <View style={{flexDirection: 'row',marginTop:10}}>
             <View style={{width:width*15/100}}>
               <Text style={{fontSize:14,color:"#455A64"}}>Kamar</Text>
             </View>
             <View style={{width:width*40/100}}>
-              <Text style={{fontSize:14,fontWeight:"bold"}}>{data.confirm}</Text>
+              <Text style={{fontSize:14,fontWeight:"bold"}}>{data.booking_availabel}</Text>
             </View>
           </View>
           <Text style={{fontSize:14,fontWeight:"bold",marginTop:10}}>{}Rp.1.900.000 / month</Text>
           <View style={{height:24,width:120, backgroundColor:"#FFA726",marginTop:10, borderRadius:50}}>
-            <Text style={{ fontSize: 12,color:"white", padding:3, textAlign:"center",alignContent:"center",justifyContent:"center"}}>{data.confirm}</Text>
+            <Text style={{ fontSize: 12,color:"white", padding:3, textAlign:"center",alignContent:"center",justifyContent:"center"}}>{data.booking_availabel}</Text>
           </View>
         </View>
         <View style={{width:width*30/100,}} >
@@ -53,7 +53,7 @@ class BookingDetail extends Component {
       <View style={{flex: 1, flexDirection: 'row',marginTop:30}}>
         <View style={{width:width*30/100}}>
           <Text style={{fontSize:14,textAlign:"center"}}>Date In</Text>
-          <Text style={{fontSize:14, marginTop:10,fontWeight:"bold",textAlign:"center"}}>{data.date}</Text>
+          <Text style={{fontSize:14, marginTop:10,fontWeight:"bold",textAlign:"center"}}>{data.stock_room}</Text>
         </View>
         <View style={{width:width*30/100}}>
           <Text style={{fontSize:14,textAlign:"center"}}>Date Out</Text>
