@@ -94,7 +94,7 @@ onRegionChange(region) {
               <Icon style={styles.icon} active name='search' />
               <Input style={{borderColor: 'red'}} placeholder='Cari penjualan alamat penjual/jasa' />
             </Item>
-            <Button style={styles.button} color="#03A9F4" mode="contained" onPress={() => console.log('Pressed')}>
+            <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
               Edit Location
             </Button>
             <MapView
@@ -146,7 +146,7 @@ onRegionChange(region) {
           </ScrollView>
           <View style={{flex:1}}>
             <View style={{position:'absolute',bottom:0,alignSelf:'center', backgroundColor:"#FFFFFF",width: width*100/100,}}>
-            <Button style={{marginLeft:width*5/100,marginRight:width*5/100,marginTop:width*2/100,marginBottom:width*2/100,width: width*90/100,height:40,alignItems:'center',alignContent:'center',borderRadius:20}} color="#03A9F4" mode="contained" onPress={() => console.log('Pressed')}>
+            <Button style={{marginLeft:width*5/100,marginRight:width*5/100,marginTop:width*2/100,marginBottom:width*2/100,width: width*90/100,height:40,alignItems:'center',alignContent:'center',borderRadius:20}} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
                 SUBMIT
               </Button>
             </View>

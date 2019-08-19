@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableHighlight,ScrollView, Dimensions,Image} from 'react-native';
-import { Text,Card,Button,Checkbox,  } from 'react-native-paper';
-import {  Item, Input, Icon} from 'native-base'; 
+import {Button,Checkbox, } from 'react-native-paper';
+import {StyleSheet,TouchableHighlight,View,Text, Image,StatusBar} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import {  Item, Input, Icon} from 'native-base';
 
 class Login extends Component {
   state = {
@@ -16,124 +17,96 @@ class Login extends Component {
   };
   render() {
     const { checklogin } = this.state;
-    const { width, height } = Dimensions.get('window');
     return (
-      <ScrollView>
-      <View style={{flex: 1,padding:8,backgroundColor: '#FF9800',height:height*100/100}}>
-        <Text style={{fontSize:26,color:"#ffff",textAlign: 'center',fontWeight: "bold",marginTop:20}}>Page Login Papa Kost</Text>
-        <Text style={{fontSize:20,color:"#ffff",textAlign: 'center',fontWeight: "bold",marginTop:3}}>For User</Text>
-        <Card style={styles.card}>
-          <Card.Content >
-            <View style={{alignContent:'center',alignItems: 'center',margin:20}}>
-               <Image
-                style={{width: 60, height: 60,justifyContent:'center',alignItems: 'center',}}
-                source={require('../image/man.png')}
-              /> 
-            </View>
-            
-            
-            <Item regular style={{marginTop:14,width:width*90/100}}>
-              <Icon style={styles.icon} active name='calculator' />
+    <ScrollView>
+      <View style={styles.container}>
+      
+        <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
+        <View style={{height:170,justifyContent:'center', borderBottomLeftRadius:90, backgroundColor:'#FF9800',}}>
+          <View style={{alignContent:'center',alignItems: 'center',margin:20}}>
+            <Image
+              style={{width: 60, height: 60,justifyContent:'center',alignItems: 'center',}}
+              source={require('../image/man.png')}
+            /> 
+            <Text style={{paddingTop:20, color:'white', fontSize:20}}>Login</Text>
+          </View>
+        </View>
 
-              <Input style={{borderColor: 'red'}} placeholder='No. Hanphone' keyboardType={'numeric'} />
-            </Item>
+        <View style={{padding: 20, paddingTop: 35}}>
+          <Item regular style={{borderRadius: 20, Colors:'#FF9800'}}>
+            <Icon style={styles.icon} active name='calculator' />
+            <Input placeholder='No. Handphone' keyboardType={'numeric'}/>
+          </Item>
+        </View>
+        <View style={{paddingLeft:20, paddingRight:20,paddingTop:5}}>
+          <Item regular style={{borderRadius: 20, Colors:'#FF9800'}}>
+            <Icon style={styles.icon} active name='eye' />
+            <Input placeholder='Password' secureTextEntry={true}/>
+          </Item>
+        </View>
+        <View style={{ flex:1, flexDirection: 'row', marginTop:10, padding:20}}>
             
-            <Item regular style={{marginTop:16,width:width*90/100}}>
-              <Icon style={styles.icon} active name='eye' />
-              <Input style={{borderColor: 'red'}} placeholder='Password' secureTextEntry={true}/>
-            </Item>
-
-            <View style={{ flexDirection: 'row', marginTop:10}}>
-              <View style={{width:width*10/100, height: 40, }}>
-                 <Checkbox style={styles.input}
+            <View style={{flexDirection: 'row', flex:1}}>
+              <View style={{ height: 30, }}>
+                  <Checkbox style={styles.input}
                   status={checklogin? 'checked' : 'unchecked'}
                   onPress={() => { this.setState({ checklogin: !checklogin }); }}
                 /> 
               </View>
-              <View style={{width:width*45/100, height: 40,}} >
+              <View style={{ height: 30}} >
                 <Text style={{marginTop:8}}>Remember Me</Text>
-              </View>
-              <TouchableHighlight onPress={this.hubungiCs}>
-                <View style={{width:width*35/100, height: 40}}>
-                  <Text style={{marginTop:10}}>Forgot Password ?</Text>
-                </View>
-              </TouchableHighlight>
-            </View>
-            <Button style={{width:width*90/100,height:40, marginTop:14,borderRadius:20}} color="#03A9F4" mode="contained" onPress={() => console.log('Pressed')}>
-              Login
-            </Button>
-            <View style={{flex: 1, flexDirection: 'row',marginTop:8}}>
-              <View style={{width: 210, height: 40,}}>
-                <Text style={{marginTop:10,textAlign:'right', }}>Don't have an account ? </Text>
-              </View>
-              <View style={{width: 60, height: 40,}}>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate('Register')}>
-                  <Text style={{marginTop:10,textDecorationLine: 'underline',color:"#FF9800",textAlign: 'center',}}>
-                      Register
-                  </Text>
-                </TouchableHighlight>
               </View>
             </View>
             
-          </Card.Content>
-        </Card>
+            <View>
+              <TouchableHighlight onPress={this.hubungiCs}>
+                <View style={{height: 30}}>
+                  <Text style={{marginTop:8, textAlign:'right',color:'#FF9800'}} >Forgot Password ?</Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+
+          </View>
+
+          <View style={{paddingLeft:20, paddingRight:20,}}>
+            <Button style={{height:40 ,borderRadius:25, backgroundColor:'#FF9800'}} color="black" mode="contained" onPress={() => console.log('Pressed')}>
+              Login
+            </Button>
+          </View>
+          <View style={{flex: 1, flexDirection: 'row',marginTop:8}}>
+            <View style={{width: 210, height: 40,}}>
+              <Text style={{marginTop:10,textAlign:'right', }}>Don't have an account ? </Text>
+            </View>
+            <View style={{width: 60, height: 40,}}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate('Register')}>
+                <Text style={{marginTop:10,textDecorationLine: 'underline',color:"#FF9800",textAlign: 'center',}}>
+                    Register
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
       </View>
-      </ScrollView>
+    </ScrollView>
     );
   }
 }
- 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding:8,
-  },
-  icon:{
-    color:"#FF9800" 
-    
-  },
+  container:{
+      flex: 1,
+      alignContent: 'center',
+  }, 
   input:{
     width :200,
     borderColor:"#FF9800",
     paddingTop:5
   },
-  card:{
-    marginTop:8,
-    height:440,
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 15,
-    borderColor:'#FF9800',
+  
+  icon:{
+    color:"#FF9800" 
+    
   },
-  inputcolor:{
-    color:"#455A64" ,
-    fontSize: 14,
-  },
-  welcome: {
-    fontSize: 25,
-    textAlign: 'center',
-    color: 'steelblue',
-    fontWeight: 'bold',
-  },
-  instructions: {
-    textAlign: 'center',
-    fontSize: 18,
-    color: 'steelblue',
-    marginBottom: 60,
-  },
-  button: {
-    width: 100,
-  },
-  signuphere:{
-    marginTop: 20,
-    fontSize: 13,
-  },
-  forgotpass: {
-    marginTop: 20,
-    fontSize: 13,
-    color : 'skyblue'
-  }
- 
-});
+})
+
+
 export default Login;
+

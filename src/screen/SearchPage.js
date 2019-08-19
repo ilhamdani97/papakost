@@ -3,73 +3,77 @@ import { StyleSheet, TextInput, FlatList, Text, Dimensions, TouchableHighlight,S
 import { Appbar,IconButton} from 'react-native-paper'
 import { View } from 'native-base';
 import { Card,Icon} from "react-native-elements";
+import ActionSheet from 'react-native-actionsheet';
 
 
 const {width,height} = Dimensions.get('window');
- const data = [
-     {
-       name: 'Rumah Bang Haji Ahmad Solihin Binti Hambali  ',
-       address: 'Jalan Kaliurang no 34 Sleman Daerah Istimewa Yogyakarta',
-       longitude: '-6.280229',
-       latitude:  '106.710818',
-       price: 'Rp. 450.000 / Room / Mounth',
-       status:"Booking Available",
-       available: '9 Rooms left',
-       cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-26/HMBkCoNa-540x720.jpg'
-     },
-     {
-       name: 'Rumah Bang Jono',
-       address: 'Jalan Kaliurang no 70 Yogyakarta',
-       longitude: '-6.284310',  
-       latitude: '106.727432',
-       price: 'Rp. 500.000 / Room / Mounth',
-       status:"Booking Available",
-       available: '1 Rooms left',
-       cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-26/HMBkCoNa-540x720.jpg'
-     },
-     {
-       name: 'Rumah Bang Karni',
-       address: 'Jalan Kaliurang no 36 Yogyakarta',
-       longitude: '-6.280613', 
-       latitude: '106.730325',
-       price: 'Rp. 350.000 / Room / Mounth',
-       status:"Booking Available",
-       available: '11 Rooms left',
-       cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-05/urFdLr1U-540x720.jpg'
-     },
-     {
-       name: 'Rumah Bang miun',
-       address: 'Jalan Kaliurang no 37 Yogyakarta',
-       longitude: '-6.283002', 
-       latitude: '106.712428',
-       price: 'Rp. 550.000 / Room / Mounth',
-       status:"Booking Available",
-       available: '3 Rooms left',
-       cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-05/rqjtRQqI-540x720.jpg'
-     },
-     {
-       name: 'Rumah Bang jali',
-       address: 'Jalan Kaliurang no 38 Yogyakarta',
-       longitude: '-6.282341',
-       latitude: '106.722792',
-       price: 'Rp. 400.000 / Room / Mounth',
-       available: '4 Rooms left',
-       status:"Booking Available",
-       cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-05/c1QOnr0p-540x720.jpg'
-     },
-     {
-       name: 'Rumah Bang tarmin',
-       address: 'Jalan Kaliurang no 39 Yogyakarta',
-       longitude: '-6.282980', 
-       latitude: '106.744423',
-       price: 'Rp. 500.000 / Room / Mounth',
-       available: '5 Rooms left',
-       status:"Booking Available",
-       cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-01/cPEYt5ij-540x720.jpg'
-     },
-    ]
+const data = [
+    {
+      name: 'Rumah Bang Haji Ahmad Solihin Binti Hambali  ',
+      address: 'Jalan Kaliurang no 34 Sleman Daerah Istimewa Yogyakarta',
+      longitude: -6.280229,
+      latitude:  106.710818,
+      price: 'Rp. 450.000 / Room / Mounth',
+      status:"Booking Available",
+      available: '9 Rooms left',
+      cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-26/HMBkCoNa-540x720.jpg'
+    },
+    {
+      name: 'Rumah Bang Jono',
+      address: 'Jalan Kaliurang no 70 Yogyakarta',
+      longitude: -6.284310,  
+      latitude: 106.727432,
+      price: 'Rp. 500.000 / Room / Mounth',
+      status:"Booking Available",
+      available: '1 Rooms left',
+      cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-26/HMBkCoNa-540x720.jpg'
+    },
+    {
+      name: 'Rumah Bang Karni',
+      address: 'Jalan Kaliurang no 36 Yogyakarta',
+      longitude: -6.280613, 
+      latitude: 106.730325,
+      price: 'Rp. 350.000 / Room / Mounth',
+      status:"Booking Available",
+      available: '11 Rooms left',
+      cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-05/urFdLr1U-540x720.jpg'
+    },
+    {
+      name: 'Rumah Bang miun',
+      address: 'Jalan Kaliurang no 37 Yogyakarta',
+      longitude: -6.283002, 
+      latitude: 106.712428,
+      price: 'Rp. 550.000 / Room / Mounth',
+      status:"Booking Available",
+      available: '3 Rooms left',
+      cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-05/rqjtRQqI-540x720.jpg'
+    },
+    {
+      name: 'Rumah Bang jali',
+      address: 'Jalan Kaliurang no 38 Yogyakarta',
+      longitude: -6.282341,
+      latitude: 106.722792,
+      price: 'Rp. 400.000 / Room / Mounth',
+      available: '4 Rooms left',
+      status:"Booking Available",
+      cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-05/c1QOnr0p-540x720.jpg'
+    },
+    {
+      name: 'Rumah Bang tarmin',
+      address: 'Jalan Kaliurang no 39 Yogyakarta',
+      longitude: -6.282980, 
+      latitude: 106.744423,
+      price: 'Rp. 500.000 / Room / Mounth',
+      available: '5 Rooms left',
+      status:"Booking Available",
+      cover: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-01/cPEYt5ij-540x720.jpg'
+    },
+   ]
   
 export default class SearchPage extends Component { 
+showActionSheet = () => {
+    this.ActionSheet.show()
+    }
     
 static navigationOptions = {
     header: null
@@ -166,14 +170,22 @@ constructor(props) {
                             color='#FF9800'
                         />
                         </View>
-                    <TouchableHighlight onPress={() => this.props.navigation.navigate('HistoryBooking')} underlayColor="white">
+                    <TouchableHighlight onPress={this.showActionSheet} underlayColor="white">
                         <View style={{width:width*14/100,marginLeft:4,marginTop:19}}>
                             <Text style={{fontSize:16}}>Sort</Text>
                         </View>
                     </TouchableHighlight>
                     </View>     
                 </View>
-            </View>                 
+            </View>
+                <ActionSheet
+                ref={o => this.ActionSheet = o}
+                title={'SHORT BY'}
+                options={['A-Z','Newest', 'High To Low Price', 'Low To High Price','The Best Rating', 'Cancel']}
+                cancelButtonIndex={5}
+                destructiveButtonIndex={1}
+                onPress={(index) => { /* do something */ }}
+                />                 
             </View>
         );
     }

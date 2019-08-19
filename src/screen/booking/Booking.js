@@ -160,7 +160,7 @@ class Booking extends Component {
             <Text style={{fontSize:12,marginLeft:3}}>I agree to the terms and conditions and ensure the above data is correct</Text>  
           </View>
         </View>
-        <Button style={{width:width*90/100,height:40, marginTop:30,borderRadius:20}} color="#03A9F4" mode="contained" onPress={() => this.props.navigation.navigate('BookingSucces')}>
+        <Button style={{width:width*90/100,height:40, marginTop:30,borderRadius:20}} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('BookingSucces')}>
           Book
         </Button>
       </View>

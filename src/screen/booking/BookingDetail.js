@@ -101,7 +101,7 @@ class BookingDetail extends Component {
           <Text style={{fontSize:14,textAlign:"center"}}>Mall</Text>
         </View>
       </View>
-      <Button style={{width:width*90/100,height:40, marginTop:30,borderRadius:20}} color="#03A9F4" mode="contained" onPress={() => this.props.navigation.navigate('BookingCancel')}>
+      <Button style={{width:width*90/100,height:40, marginTop:30,borderRadius:20}} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('BookingCancel')}>
           Cancel Booking
         </Button>
     </View>

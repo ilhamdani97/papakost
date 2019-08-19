@@ -8,21 +8,21 @@ import {Marker} from 'react-native-maps';
 
 export default class DetailPage extends Component {
 
-  static navigationOptions = {
-      header: null
-    }
+  // static navigationOptions = {
+  //     header: null
+  //   }
   render() {
     const { width, height } = Dimensions.get('window');
     return (
       <View>
           <ScrollView showsVerticalScrollIndicator={false}>
-        <Appbar.Header>
+        {/* <Appbar.Header style={{position:'absolute'}}>
             <Appbar.BackAction color="black"
                   onPress={() => this.props.navigation.navigate('SearchPage')}
                   />
-        </Appbar.Header>
+        </Appbar.Header> */}
         <Image source={{uri:'https://static.mamikos.com/uploads/cache/data/style/2019-08-01/cPEYt5ij-540x720.jpg'}}
-        style={{width:width*100/100, height: 200, borderTopLeftRadius:20, borderTopRightRadius: 20 }}/>
+        style={{width:width*100/100, height: 200,}}/>
         <View style={{flexDirection:"row", paddingTop: 15, paddingLeft: 20}}>
         <View >
               <TouchableOpacity><Icon name={'favorite-border'}/></TouchableOpacity>
@@ -41,8 +41,8 @@ export default class DetailPage extends Component {
           </View>
         </View>
           <View style={{paddingLeft:20, paddingRight:20}}>
-            <Text style={{fontWeight:'bold', fontSize:30, color:'black'}}>Rumah Bang Haji</Text>
-            <Text style={{color:'black'}}>Jalan Kaliurang no 34 Yogyakarta</Text>
+            <Text style={{fontWeight:'bold', fontSize:30, color:'black'}}>{this.props.navigation.getParam('rowData').name}</Text>
+            <Text style={{color:'black'}}>{this.props.navigation.getParam('rowData').address}</Text>
             <Text style={{color:'#FF9800'}}>9 Room left</Text>
             <View style={{width:width*90/100, height: 1, backgroundColor:'#FF9800' , marginBottom:15, marginTop:15}} />
             <Text style={{color:'black', fontWeight:'bold'}}>Rating :</Text>
@@ -71,8 +71,8 @@ export default class DetailPage extends Component {
               provider={PROVIDER_GOOGLE} // remove if not using Google Maps
               style={styles.map}
               region={{
-                latitude: -6.301795,
-                longitude: 106.735051,
+                latitude: this.props.navigation.getParam('rowData').longitude,
+                longitude: this.props.navigation.getParam('rowData').latitude,
                 latitudeDelta: 0.015,
                 longitudeDelta: 0.0121,
               }}
@@ -80,8 +80,8 @@ export default class DetailPage extends Component {
             >
               <Marker
                 coordinate={
-                  {latitude:-6.301645,
-                    longitude:106.735260
+                  {latitude:this.props.navigation.getParam('rowData').longitude,
+                    longitude:this.props.navigation.getParam('rowData').latitude
                   }
                 }
                 title={"marker.title"}
@@ -92,7 +92,7 @@ export default class DetailPage extends Component {
             <Text style={{color:'black', paddingTop:25 , fontWeight:'bold'}}>About This Kost:</Text>
             <Text style={{color:'black', paddingTop:10}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </Text>
             <View style={{borderRadius:8,alignItems:'center', backgroundColor:'#FF9800', marginTop: 15,marginBottom:10, height:80}}>  
-                <Text style={{color:'white', fontSize:20, paddingLeft:5,paddingBottom:4}}>Rp. 500.000 <Text style={{color:'white', fontSize:10}}>/ Room / Mounth</Text></Text>
+                <Text style={{color:'white', fontSize:20, paddingLeft:5,paddingBottom:4}}>{this.props.navigation.getParam('rowData').price}</Text>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingDate')}>
                 <Button style={{padding:2, margin:2,backgroundColor:'#FF9800', borderRadius:5,borderWidth: 1,borderColor: '#fff'}}><Text style={{color:'#fff'}}>Booking</Text></Button>
                 </TouchableOpacity>

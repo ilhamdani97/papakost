@@ -37,7 +37,7 @@ class BookingDate extends Component {
           />
         <Text style={{marginBottom:10,color:'#455A64',fontSize:12}}>Start Date Maximum 2 Months From Now</Text>
         <View>
-          <Button style={styles.button} color="#03A9F4" mode="contained" onPress={() => this.props.navigation.navigate('BookingDuration')}>
+          <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('BookingDuration')}>
             Next
           </Button>
         </View>

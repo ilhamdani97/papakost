@@ -94,7 +94,7 @@ class Filter extends Component {
               />
             </View>
           </View>
-          <Button style={{width:width*90/100,height:40, marginTop:50,borderRadius:20}} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('BookingCancel')}>
+          <Button style={{width:width*90/100,height:40, marginTop:50,borderRadius:20}} color="#FF9800" mode="contained" >
             <Text style={{color:'white'}}>Search</Text>
           </Button>
       </View>

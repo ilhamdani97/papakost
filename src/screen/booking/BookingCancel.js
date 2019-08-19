@@ -67,12 +67,12 @@ class BookingCancel extends Component {
         <Text style={{fontSize:11,marginTop:20}}>Anda tidak dapat melakukan pembayaran setelah membatalkan pesan ini</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{width:width*48/100}}>
-            <Button style={{width:width*40/100,height:40, marginTop:20,borderRadius:20}} color="#03A9F4" mode="contained" onPress={() => console.log('Pressed')}>
+            <Button style={{width:width*40/100,height:40, marginTop:20,borderRadius:20}} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
               Tidak Jadi
             </Button>
           </View>
           <View style={{width:width*45/100}}>
-            <Button style={{width:width*40/100,height:40, marginTop:20,borderRadius:20}} color="#03A9F4" mode="contained" onPress={() => console.log('Pressed')}>
+            <Button style={{width:width*40/100,height:40, marginTop:20,borderRadius:20}} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
               Ya, Batalkan
             </Button>
           </View>

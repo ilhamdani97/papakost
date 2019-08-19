@@ -25,7 +25,6 @@ import BookingItem from '../booking/BookingItem'
 import BookingSucces from '../booking/BookingSucces'
 import BookingDuration from '../booking/BookingDuration'
 import Filter from '../Filter';
-// import Filter from '../../screen/Filter'
 
 const AppNavigator = createStackNavigator({
     ExplorePage: {
@@ -77,7 +76,6 @@ const AppNavigator = createStackNavigator({
     }, Filter:{
         screen:Filter
     }
-    
 }, {
         initialRouteName: 'ExplorePage',
     });

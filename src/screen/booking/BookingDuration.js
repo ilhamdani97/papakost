@@ -53,7 +53,7 @@ class BookingDuration extends Component {
           </View>
         </View>
         <View>
-          <Button style={styles.button} color="#03A9F4" mode="contained" onPress={() => this.props.navigation.navigate('Booking')}>
+          <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('Booking')}>
             Next
           </Button>
         </View>

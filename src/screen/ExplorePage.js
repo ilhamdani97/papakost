@@ -106,7 +106,7 @@ export default class ExplorePage extends Component {
         <ScrollView showsVerticalScrollIndicator={false} >
         <Text style={styles.welcome}>Hi,</Text>
         <Text style={styles.intro}>What Are You Looking For?</Text>
-        <Button color='black' icon="search" mode="outlined" onPress={() => this.props.navigation.navigate('SearchPage')}><Text style={styles.button}>search Here</Text></Button>
+        <Button color='#FF9800' borderColor='#FF9800' icon="search" mode="outlined" onPress={() => this.props.navigation.navigate('SearchPage')}><Text style={styles.button}>search Here</Text></Button>
         <Text style={styles.promo}>Promo</Text>
         <Slideshow 
             dataSource={this.state.dataSource}
@@ -134,7 +134,12 @@ export default class ExplorePage extends Component {
           </TouchableOpacity>
         </View> */}
 
-        <Text style={{marginTop:15, fontWeight:'bold', color:'black'}}>Popular City</Text>
+          <View style={{flexDirection:'row', flex:1,}}>
+            <Text style={{flex:1, marginTop:15, fontWeight:'bold', color:'black', justifyContent:'flex-start'}}>Popular City</Text>
+            <TouchableOpacity>
+              <Text style={{marginTop:15, color:'#FF9800', justifyContent:'flex-end',textAlign:'right', flex:1}}>View All</Text>
+            </TouchableOpacity>
+          </View> 
             <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -171,12 +176,12 @@ const styles = StyleSheet.create({
   welcome: {
     marginTop:5,
     fontSize: 20,
-    color: '#FF9800',
+    color: 'black',
     fontWeight: 'bold',
   },
   intro: {
     fontSize: 15,
-    color: '#FF9800',
+    color: 'black',
     marginBottom: 15,
   },
   promo:{

@@ -20,7 +20,7 @@ class ItemUser extends Component {
            <Paragraph style={styles.paddingView}>Data Iklan :</Paragraph>
         </View>
         <View >
-        <Button style={styles.button} color="#03A9F4" mode="contained" onPress={() => this.props.navigation.navigate('Ads')}>
+        <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('Ads')}>
            Iklan
         </Button>
         </View>
