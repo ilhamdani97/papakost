@@ -3,16 +3,7 @@ import { Card,Paragraph,IconButton} from 'react-native-paper';
 import {StyleSheet,TouchableHighlight,View,ScrollView,Dimensions,StatusBar} from 'react-native';
 import { Icon } from 'react-native-elements'
 import { createStackNavigator, createAppContainer} from 'react-navigation'
-import Market from './Market'
-import Contract from './Contract'
-import Complain from './Complain';
-import Setting from './Setting';
-import Verifikasi from './Verifikasi';
-import ItemUser from './ItemUser';
-import Ads from '../ads/Ads';
-import BookingList from '../booking/BookingList';
-import BookingDetail from '../booking/BookingDetail';
-import BookingCancel from '../booking/BookingCancel';
+
 
 class Profile extends Component {
   static navigationOptions = {
@@ -278,18 +269,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const ProfileNavigator = createStackNavigator({
-  Profile :{screen:Profile},
-  Contract : {screen:Contract},
-  Market : {screen:Market},
-  Setting : {screen:Setting},
-  Verifikasi : {screen:Verifikasi},
-  Complain :{screen:Complain},
-  ItemUser :{screen:ItemUser},
-  Ads      : {screen:Ads},
-  Detail :{screen:BookingDetail},
-  HistoryBooking :{screen:BookingList},
-  BookingCancel:{ screen:BookingCancel}
-});
 
-export default Profile = createAppContainer(ProfileNavigator);
+
+export default Profile ;

@@ -1,22 +1,18 @@
 import React, {Component} from 'react';
-import { Paragraph } from 'react-native-paper';
-import {StyleSheet,View, Text} from 'react-native';
-import { Icon } from 'react-native-elements';
-
+import { Provider as PaperProvider,Text,Card,Title,Paragraph,IconButton, Colors } from 'react-native-paper';
+import {StyleSheet,TouchableHighlight,View} from 'react-native';
+import { Icon } from 'react-native-elements'
 
 class Chatnull extends Component {
-  showActionSheet = () => {
-    this.ActionSheet.show()
-  }
   render() {
     return (
     <View style={styles.container}>
         <Icon
           name='chat'
           size={100}
-          color="#FF9800"
+          color={Colors.green500}
         />
-        <Paragraph style={styles.padding}>You Don't Have Any Chat</Paragraph>
+        <Paragraph style={styles.padding}>Kamu Belum Memiliki Percakapan</Paragraph>
     </View>
     );
   }
@@ -26,8 +22,7 @@ const styles = StyleSheet.create({
       flexGrow: 1,
       padding: 20,
       alignContent: 'center',
-      justifyContent:'center',
-      backgroundColor: 'white'
+      justifyContent:'center'
   },
   padding:{
     margin:10,
@@ -37,3 +32,4 @@ const styles = StyleSheet.create({
 
 
 export default Chatnull;
+

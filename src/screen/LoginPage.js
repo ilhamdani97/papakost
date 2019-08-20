@@ -20,7 +20,7 @@ class Loginnull extends Component {
           color='#FF9800'
         />
         <Paragraph style={styles.padding}>Please Login First For Unlock Your Happiness</Paragraph>
-        <Button style={styles.padding} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('Login')}>
+        <Button style={styles.padding} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('ClassLogin')}>
           <Paragraph style={{color:'white'}}>Login</Paragraph>
         </Button>
         <StatusBar backgroundColor='#FF9800' barStyle='light-content' />

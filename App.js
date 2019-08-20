@@ -1,56 +1,38 @@
-import React, {Component} from 'react';
-import {BottomNavigation, Provider,DefaultTheme, Colors} from 'react-native-paper';
+import React,{Component} from 'react'
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation'
+import LoginNav from './src/navigation/LoginNav'
+import PublicNav from './src/navigation/PublicNav'
+import LoginStack from './src/navigation/LoginStack'
+import PublicStack from './src/navigation/PublicStack'
+import CheckStack from './src/navigation/CheckSatck'
+import Explore from './src/screen/ExplorePage'
 
-import WishlistPage from './src/screen/WishlistPage';
-import ChatPage from './src/screen/ChatPage';
-import Loginnull from './src/screen/Loginnull';
-import routes from './src/screen/lib/Routes';
-import Profile from './src/screen/profile/Profile';
+const AppNavigator = createSwitchNavigator({
+  LoginStack:LoginStack,
+  PublicStack:{
+    screen:PublicStack,
+    navigationOption:{
+      header: null,
+    }
+  },
+  CheckStack:{
+    screen:CheckStack,
+    navigationOption:{
+      header: null,
+    }
+  }
+}, {
+  initialRouteName: 'CheckStack'
+})
+const AppContainer = createAppContainer(AppNavigator);
 
-
-export default class app extends Component {
-  state = {
-    index: 0,
-    routes: [
-      { key: 'explore', title: 'Explore', icon: 'search'},
-      { key: 'wishlist', title: 'Wish List', icon: 'favorite-border'},
-      { key: 'chat', title: 'Chat', icon: 'chat-bubble-outline'},
-      { key: 'login', title: 'Login', icon: 'face' }
-    ],
-  };
-
-  _handleIndexChange = index => this.setState({ index });
-
-  _renderScene = BottomNavigation.SceneMap({
-    explore: routes,
-    wishlist: WishlistPage,
-    chat: ChatPage,
-    login: Profile
-  });
-
+class App extends Component {
   render() {
     return (
-      <Provider theme={theme}>
-        <BottomNavigation
-          shifting={false}
-          activeColor="#FF9800"
-          inactiveColor='silver'
-          navigationState={this.state}
-          onIndexChange={this._handleIndexChange}
-          renderScene={this._renderScene}
-        />
-      </Provider>
-      
-    );
+      <AppContainer />
+    )
   }
 }
 
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: Colors.White,
-    accent: '#FF9800',
-  }
-};
+export default App;
