@@ -30,10 +30,8 @@ class BookingList extends Component {
   };
   keyExtractor = (item, index) => index.toString()
   renderItem = ({ item }) => {
-    
     const { width, height } = Dimensions.get('window');
     return (
-      
         <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail',{rows:item})} underlayColor="white">
           <Card style={{marginTop:10}} >
             <Card.Content >
