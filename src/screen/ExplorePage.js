@@ -5,6 +5,7 @@ import Slideshow from 'react-native-slideshow';
 import { Card } from "react-native-elements";
 import { ScrollView } from 'react-native-gesture-handler';
 
+import AsyncStorage from '@react-native-community/async-storage';
 const data = [
   { imageUrl: "https://www.raunsumatra.com/home/wp-content/uploads/2015/09/bandung.jpg",
     title: "Bandung",
@@ -21,8 +22,28 @@ const data = [
     title: "Denpasar",}
 ];
 
-
 export default class ExplorePage extends Component { 
+  componentDidMount(){
+    this.checkLogin()
+  }
+  checkLogin = async ()=>{
+    const fetchData = await AsyncStorage.getItem('key')
+    if(fetchData){
+      this.setState({
+        doLogin:true
+      })
+    }else{
+      this.setState({
+        doLogin:false
+      })
+    }
+  }
+  state = {
+    doLogin:false
+  }
+componentWillMount(){
+  clearInterval(this.state.interval)
+}
   static navigationOptions = {
     header: null
   }
@@ -118,10 +139,18 @@ export default class ExplorePage extends Component {
           <Text style={{fontSize:12,paddingLeft:10, color:'white', flex:8, alignContent:'center'}}>
             You Are Owner?
             {"\n"}
-            Login Or Register Here!
+            Create Your's Ads
           </Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-            <Button style={{flex:2, margin:6,backgroundColor:'#FF9800', borderRadius:5,borderWidth: 1,borderColor: '#fff'}}><Text style={{color:'#fff'}}>Login</Text></Button>
+          <TouchableOpacity 
+            onPress={()=>{
+              if(this.state.doLogin){
+                this.props.navigation.navigate('Ads')
+              }else{
+                this.props.navigation.navigate('LoginStart')
+              }
+              // alert(this.state.udahLogin)
+            }}>
+            <Button style={{flex:2, margin:6,backgroundColor:'#FF9800', borderRadius:5,borderWidth: 1,borderColor: '#fff'}}><Text style={{color:'#fff'}}>Ads</Text></Button>
           </TouchableOpacity>
         </View>
 

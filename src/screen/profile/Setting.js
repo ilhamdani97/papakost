@@ -2,8 +2,14 @@ import React, {Component} from 'react';
 import { Provider as PaperProvider,Text,Card,Title,Paragraph,IconButton,Checkbox, Colors,List } from 'react-native-paper';
 import {StyleSheet,TouchableHighlight,View,} from 'react-native';
 import { Icon } from 'react-native-elements'
-
+import AsyncStorage from '@react-native-community/async-storage';
 class Setting extends Component {
+  _logoutAsync = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {}
+    this.props.navigation.navigate('PublicStack')
+  };
   static navigationOptions =
   {
     title: 'Settings',
@@ -59,7 +65,7 @@ class Setting extends Component {
             </View>
           </Card.Content>
         </Card>
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('Booking')} underlayColor="white">
+        <TouchableHighlight onPress={()=> this._logoutAsync()} underlayColor="white">
         <Card style={styles.paddingTop}>
           <Card.Content >
             <View style={{

@@ -12,13 +12,13 @@ import SearchPage from '../screen/SearchPage'
 import DetailPage from '../screen/DetailPage'
 import Filter from '../screen/Filter';
 import Login from '../screen/LoginPage'
-
+import Ads from '../screen/ads/Ads'
 
 const SatckPublic = createStackNavigator({
     PublicNav:PublicNav,
     Explore:Explore,
     Wishlist:Wishlist,
-    Login:Loginnul,
+    LoginStart:Loginnul,
     LoginStack:LoginStack,
     ClassLogin:ClassLogin,
     Register:Register,
@@ -26,6 +26,7 @@ const SatckPublic = createStackNavigator({
     DetailPage:DetailPage,
     Filter:Filter,
     Login:Login,
+    Ads:Ads
 
 } ,{
     initialRouteName: "PublicNav",

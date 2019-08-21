@@ -10,18 +10,8 @@ import Explore from './src/screen/ExplorePage'
 
 const AppNavigator = createSwitchNavigator({
   LoginStack:LoginStack,
-  PublicStack:{
-    screen:PublicStack,
-    navigationOption:{
-      header: null,
-    }
-  },
-  CheckStack:{
-    screen:CheckStack,
-    navigationOption:{
-      header: null,
-    }
-  }
+  PublicStack: PublicStack,
+  CheckStack: CheckStack
 }, {
   initialRouteName: 'CheckStack'
 })

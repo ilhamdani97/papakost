@@ -1,35 +1,38 @@
 import React, { Component } from 'react'
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import AsyncStorage from '@react-native-community/async-storage';
 import {
   ActivityIndicator,
-  AsyncStorage,
   StatusBar,
   StyleSheet,
   View,
   Text
 } from "react-native";
 import { Button } from 'react-native-paper'
-
 import LoginNav from './LoginNav';
-// import ClassHome from '../screen/Home';
-// import ClassListKos from '../screen/ClassListKos';
-// import ClassDetailKos from '../screen/ClassDetailKos';
-// import ClassIklanTambah from '../screen/ClassIklanTambah';
-// import ClassDetailBooking from '../screen/ClassDetailBooking';
 
 class CheckStack extends Component {
+  state = {
+    isLogin:'false',
+    good: ''
+  }
   constructor(props) {
     super(props);
-    this.state = {
-      isLogin: 'false'
-    }
-    this._bootstrapAsync();
+    this.isLogin
+    this.bootstrapAsync();
   }
 
-  _bootstrapAsync = async () => {
-    // const userToken = await AsyncStorage.getItem('userObj');
-    const userToken = false;
-    this.props.navigation.navigate(userToken ? 'LoginStack' : 'PublicStack');
+  bootstrapAsync = async () => {
+    try{
+      const fetchData  = await AsyncStorage.getItem('key')
+      if(fetchData != null){
+        this.props.navigation.navigate('LoginStack')
+      }else{
+        this.props.navigation.navigate('PublicStack')
+      }
+    }catch(e){
+      alert(e)
+    }
   };
 
   render() {

@@ -1,18 +1,34 @@
     
 import React, {Component} from 'react';
 import {Button,Checkbox,Appbar } from 'react-native-paper';
-import {StyleSheet,TouchableHighlight,View,Text, Image,StatusBar,AsyncStorage} from 'react-native';
+import {StyleSheet,TouchableHighlight,View,Text, Image,StatusBar} from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { ScrollView } from 'react-native-gesture-handler';
 import {  Item, Input, Icon} from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
 class Login extends Component {
-  state = {
-    checklogin: false,
-    textHandphone :'',
-    textPassword:'',
-    userObject:''
-  };
+  constructor(props){
+    super(props)
+    this.state={
+      textHandphone:"",
+      textPassword:"",
+      key:"",
+      fatchUser:""
+    }
+  }
+  componentDidMount(){
+    axios.get('http://192.168.0.11:1997/api/users')
+    .then(response =>{
+      this.setState({
+        fatchUser: response.data
+      })
+    })
+    .catch(error =>{
+      alert(error)
+    })
+  }
 
   _handleHanphone = (text)=>{
     this.setState({
@@ -24,25 +40,31 @@ class Login extends Component {
       textPassword:text
     })
   }
-  aksiLogin = ()=>{
-    this.setState({
-      userObject:{
-        handphone: this.state.handphone,
-        password:this.state.password
+  aksiLogin  = async () =>{
+    try{
+      let tempUser = {
+        handphone : this.state.textHandphone,
+        password : this.state.textPassword
       }
-    })
-    //asyncStorage
-    this.props.navigation.navigate('LoginStack')
-  }
-  _loginAsync = async (userObjectny)=>{
-    await AsyncStorage.setItem('serObject',userObjectny)
-  }
-  static navigationOptions = {
-    headerTintColor: 'white',
-    headerStyle: {
-      backgroundColor: '#FF9800',
-      elevation: 0,
-    },
+      await axios.post("http://192.168.0.11:1997/api/login",{
+        no_tlp: tempUser.handphone,
+        password: tempUser.password
+      })
+      .then((response)=>{
+        if(typeof response.data.key !=='undefined'){
+          AsyncStorage.setItem('key',response.data.key)
+          this.props.navigation.navigate('LoginStack')
+        }else{
+          alert('Wrong No Hanphone and Password ...')
+        }
+      })
+      .catch((error)=>{
+        alert(error)
+      })
+    }catch(e){
+      console.log(e)
+    }
+
   };
   render() {
     const { checklogin } = this.state;
@@ -106,7 +128,7 @@ class Login extends Component {
           </View>
 
           <View style={{paddingLeft:20, paddingRight:20,}}>
-            <Button style={{height:40 ,borderRadius:25, backgroundColor:'#FF9800'}} color="black" mode="contained" onPress={this.aksiLogin}>
+            <Button style={{height:40 ,borderRadius:25, backgroundColor:'#FF9800'}} color="black" mode="contained" onPress={() => this.aksiLogin()}>
               Login
             </Button>
           </View>
