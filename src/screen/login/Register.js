@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-native-paper';
+import {Button,Appbar} from 'react-native-paper';
 import {StyleSheet,View,Text, Image,StatusBar} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import {  Item, Input, Icon} from 'native-base';
@@ -16,6 +16,11 @@ class Login extends Component {
     return (
     <ScrollView>
       <View style={styles.container}>
+      <Appbar.Header style={{backgroundColor:'#FF9800'}}>
+          <Appbar.BackAction color="white"
+                onPress={() => this.props.navigation.goBack()}
+                />
+      </Appbar.Header>
       
         <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
         <View style={{height:110,justifyContent:'center', borderBottomLeftRadius:90, backgroundColor:'#FF9800',}}>
@@ -80,4 +85,3 @@ const styles = StyleSheet.create({
 
 
 export default Login;
-

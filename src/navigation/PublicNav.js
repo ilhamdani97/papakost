@@ -15,7 +15,7 @@ const PublicNav = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Explore',
             tabBarIcon: ({ tintColor }) => (
-              <Icon name="search" color={tintColor} size={25} />
+              <Icon name="home" color={tintColor} size={25} />
             )
         }
     },
@@ -24,7 +24,7 @@ const PublicNav = createBottomTabNavigator({
         navigationOptions:{
             tabBarLabel: 'Wishlist',
             tabBarIcon:({tintColor})=>(
-                <Icon name="heart-empty" color={tintColor} size={25} />
+                <Icon name="favorite" color={tintColor} size={25} />
             )
         }
     },
@@ -33,7 +33,7 @@ const PublicNav = createBottomTabNavigator({
         navigationOptions:{
             tabBarLabel:'Chat',
             tabBarIcon:({tintColor})=>(
-                <Icon name="chat-bubble-outline" color={tintColor} size={25}/>
+                <Icon name="chat" color={tintColor} size={25}/>
             )
         }
     },
@@ -48,19 +48,19 @@ const PublicNav = createBottomTabNavigator({
     }
 }, {
     tabBarOptions: {
-      activeTintColor: '#FF9800',
-      inactiveTintColor: '#FFA726',
-      style: {
-        backgroundColor: '#ffffff',
-        borderTopWidth: 0,
-        shadowOffset: { width: 6, height: 6 },
-        shadowColor: 'black',
-        shadowOpacity: 0.5,
-        elevation: 6,
-        paddingTop: 10
-      }
+    activeTintColor: '#FF9800',
+    inactiveTintColor: '#FFA726',
+    style: {
+    backgroundColor: '#ffffff',
+    borderTopWidth: 0,
+    shadowOffset: { width: 6, height: 6 },
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    elevation: 6,
+    paddingTop: 10
     }
-  });
+}
+});
 
 const styles = StyleSheet.create({
     container: {

@@ -8,6 +8,11 @@ import Loginnul from '../screen/LoginPage'
 import LoginStack from '../navigation/LoginStack'
 import ClassLogin from '../screen/login/Login'
 import Register from '../screen/login/Register'
+import SearchPage from '../screen/SearchPage'
+import DetailPage from '../screen/DetailPage'
+import Filter from '../screen/Filter';
+import Login from '../screen/LoginPage'
+
 
 const SatckPublic = createStackNavigator({
     PublicNav:PublicNav,
@@ -16,7 +21,12 @@ const SatckPublic = createStackNavigator({
     Login:Loginnul,
     LoginStack:LoginStack,
     ClassLogin:ClassLogin,
-    Register:Register
+    Register:Register,
+    SearchPage:SearchPage,
+    DetailPage:DetailPage,
+    Filter:Filter,
+    Login:Login,
+
 } ,{
     initialRouteName: "PublicNav",
     headerMode: 'none'

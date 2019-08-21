@@ -42,8 +42,8 @@ class CheckStack extends Component {
         <Text style={{
           fontSize:20,
           fontWeight:'bold'
-        }}>HARAP TUNGGU...</Text>
-        <ActivityIndicator size={50} color="#0000ff" />
+        }}>Please Wait</Text>
+        <ActivityIndicator size={50} color="#FF9800" />
       </View>
     );
   }

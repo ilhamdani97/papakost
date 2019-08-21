@@ -74,7 +74,7 @@ export default class ExplorePage extends Component {
             size={28}
             onPress={() => console.log('Pressed')}
           />
-          <Text style={{fontWeight:'bold', color:'#FF9800', fontSize: 15,marginTop:13}}>PAPAKOST</Text>
+          <Text style={styles.header}>PAPAKOST</Text>
         </View>
         <View style={{flexDirection:"row", justifyContent:"space-around"}}>
           <IconButton
@@ -118,9 +118,9 @@ export default class ExplorePage extends Component {
           <Text style={{fontSize:12,paddingLeft:10, color:'white', flex:8, alignContent:'center'}}>
             You Are Owner?
             {"\n"}
-            Login Or Signup Here!
+            Login Or Register Here!
           </Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginPage')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
             <Button style={{flex:2, margin:6,backgroundColor:'#FF9800', borderRadius:5,borderWidth: 1,borderColor: '#fff'}}><Text style={{color:'#fff'}}>Login</Text></Button>
           </TouchableOpacity>
         </View>
@@ -151,7 +151,7 @@ export default class ExplorePage extends Component {
                     <Card
                       title={null}
                       image={{ uri: rowData.imageUrl }}
-                      containerStyle={{ padding: 0, width: 150 ,borderRadius:10}}>
+                      containerStyle={{ padding: 0, width: 150}}>
                       <Text style={{textAlign:'center'}}>
                         {rowData.title}
                       </Text>
@@ -190,6 +190,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     fontWeight: "bold",
+  }, header:{
+    fontWeight:'bold', 
+    color:'#FF9800', 
+    fontSize: 15,
+    marginTop:13
   }
 
 });

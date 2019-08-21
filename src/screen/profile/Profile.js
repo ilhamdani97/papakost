@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Card,Paragraph,IconButton} from 'react-native-paper';
-import {StyleSheet,TouchableHighlight,View,ScrollView,Dimensions,StatusBar} from 'react-native';
+import {StyleSheet,TouchableHighlight,View,ScrollView,Dimensions,StatusBar,Text} from 'react-native';
 import { Icon } from 'react-native-elements'
 import { createStackNavigator, createAppContainer} from 'react-navigation'
 
@@ -38,8 +38,8 @@ class Profile extends Component {
             <Paragraph style={{color:'#FFFFFF',}}>Ilham Ramadani</Paragraph>
             <Paragraph style={{color:'#FFFFFF', fontSize:14, }}>081361517171</Paragraph>
           </View>
-          <View style={{width:width*25/100}}>
-          <Paragraph style={{color:'#FFFFFF', fontSize:14,paddingRight:5 }}>Edit Profile</Paragraph>
+          <View style={{width:width*35/100}}>
+          <Text style={{color:'#FFFFFF', fontSize:14}}>Edit Profile</Text>
           </View>
         </View>
           <View style={{padding:60,flex:1}}/>
@@ -48,7 +48,7 @@ class Profile extends Component {
       <View style={styles.container}>
       <Card>
         <Card.Content >
-          <Paragraph style={styles.paddingButtom}>Papi Kost</Paragraph>
+          <Paragraph style={styles.paddingButtom}>PapaKost</Paragraph>
           <View style={styles.coloumn}>
               <View style={styles.colloumStyle}> 
                 <IconButton style={styles.paragraf}
@@ -89,7 +89,7 @@ class Profile extends Component {
           </View>
         </Card.Content>
       </Card>
-      <TouchableHighlight onPress={() => this.props.navigation.navigate('HistoryBooking')} underlayColor="white">
+      <TouchableHighlight onPress={() => this.props.navigation.navigate('ItemUser')} underlayColor="white">
       <Card style={styles.paddingTop}>
         <Card.Content >
           <View style={styles.coloumnList}>

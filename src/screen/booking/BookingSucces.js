@@ -18,7 +18,7 @@ static navigationOptions = {
         <View style={{alignItems: 'center',justifyContent:'center'}} >
             <Image
               style={{width: 150, height: 150}}
-              source={require('../../image/checked.png')}
+              source={require('../../assets/checked.png')}
             />
           </View>
         <Paragraph style={styles.title}>Your booking request has been processed</Paragraph>

@@ -67,7 +67,7 @@ class Booking extends Component {
           <View style={{width:width*30/100}} >
             <Image
               style={{width: 100, height: 100}}
-              source={require('../../image/pictures.png')}
+              source={require('../../assets/pictures.png')}
             />
           </View>
           <View style={{width:width*65/100}} >

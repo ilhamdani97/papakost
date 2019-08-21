@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button,Checkbox, } from 'react-native-paper';
+import {Button,Checkbox,Appbar } from 'react-native-paper';
 import {StyleSheet,TouchableHighlight,View,Text, Image,StatusBar} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import {  Item, Input, Icon} from 'native-base';
@@ -20,13 +20,17 @@ class Login extends Component {
     return (
     <ScrollView>
       <View style={styles.container}>
-      
+        <Appbar.Header style={{backgroundColor:'transparent'}}>
+            <Appbar.BackAction color="black"
+                  onPress={() => this.props.navigation.goBack()}
+                  />
+        </Appbar.Header>
         <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
         <View style={{height:170,justifyContent:'center', borderBottomLeftRadius:90, backgroundColor:'#FF9800',}}>
           <View style={{alignContent:'center',alignItems: 'center',margin:20}}>
             <Image
               style={{width: 60, height: 60,justifyContent:'center',alignItems: 'center',}}
-              source={require('../image/man.png')}
+              source={require('../assets/man.png')}
             /> 
             <Text style={{paddingTop:20, color:'white', fontSize:20}}>Login</Text>
           </View>

@@ -20,7 +20,7 @@ static navigationOptions =
           size={100}
           color='#FF9800'
         />
-        <Paragraph style={styles.padding}>Kamu Belum Memiliki Complain</Paragraph>
+        <Paragraph style={styles.padding}>You Don't Have ANy Complain</Paragraph>
     </View>
     );
   }

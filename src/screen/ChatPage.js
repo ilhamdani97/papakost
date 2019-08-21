@@ -10,9 +10,9 @@ class Chatnull extends Component {
         <Icon
           name='chat'
           size={100}
-          color={Colors.green500}
+          color='#FF9800'
         />
-        <Paragraph style={styles.padding}>Kamu Belum Memiliki Percakapan</Paragraph>
+        <Paragraph style={styles.padding}>You Don't Have Any Chat</Paragraph>
     </View>
     );
   }
@@ -32,4 +32,3 @@ const styles = StyleSheet.create({
 
 
 export default Chatnull;
-

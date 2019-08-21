@@ -4,8 +4,8 @@ import { Provider as PaperProvider,Card,Title,Paragraph,IconButton, Colors} from
 import { View } from 'native-base';
 import { Icon } from 'react-native-elements'
 const rows = [
-  { id: 0, picture:"./src/images/pictures.png", title: 'Kos Mami Kos Padjajaran Sumedang', date:'17 Agu 2019',time:'2 bulan', confirm:'Tunggu Konfirmasi' },
-  {  id: 1, picture:"./src/images/pictures.png", title: 'Kos Mami Kos Padjajaran Sumedang', date:'16 Agu 2019',time:'5 bulan', confirm:'Sudah Konfirmasi'},
+  { id: 0, picture:"./src/assets/pictures.png", title: 'Kos Mami Kos Padjajaran Sumedang', date:'17 Agu 2019',time:'2 bulan', confirm:'Tunggu Konfirmasi' },
+  {  id: 1, picture:"./src/assets/pictures.png", title: 'Kos Mami Kos Padjajaran Sumedang', date:'16 Agu 2019',time:'5 bulan', confirm:'Sudah Konfirmasi'},
 ]
 
 const extractKey = ({ id }) => id
@@ -21,7 +21,7 @@ class BookingList extends Component {
               <View style={{width:width*30/100}}>
               <Image
                 style={{width: 100, height: 100}}
-                source={require('../../image/pictures.png')}
+                source={require('../../assets/pictures.png')}
               />
               </View>
               <View style={{width:width*65/100,marginLeft:4,marginTop:5}}>
@@ -33,7 +33,7 @@ class BookingList extends Component {
                     <Text style={{fontSize: 11}}>{item.date}</Text>
                   </View>
                   <View style={{width: 80, height: 40}}>
-                    <Text style={{fontSize: 10}}>Durasi Sewa</Text>
+                    <Text style={{fontSize: 10}}>Duration</Text>
                     <Text style={{fontSize: 11}}>{item.time}</Text>
                   </View>
                 </View>

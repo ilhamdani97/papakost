@@ -19,7 +19,7 @@ static navigationOptions = {
           size={100}
           color='#FF9800'
         />
-        <Paragraph style={styles.padding}>Kamu Belum Memiliki Kontrakan</Paragraph>
+        <Paragraph style={styles.padding}>You Don't Have Any Contract</Paragraph>
         
     </View>
     );

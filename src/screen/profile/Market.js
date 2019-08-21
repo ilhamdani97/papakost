@@ -20,7 +20,7 @@ static navigationOptions = {
           size={100}
           color='#FF9800'
         />
-        <Paragraph style={styles.padding}>Kamu Belum Memiliki Kios</Paragraph>
+        <Paragraph style={styles.padding}>You Don't Have Any Market</Paragraph>
         
     </View>
     );

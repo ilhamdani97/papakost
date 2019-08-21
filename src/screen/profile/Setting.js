@@ -6,7 +6,7 @@ import { Icon } from 'react-native-elements'
 class Setting extends Component {
   static navigationOptions =
   {
-    title: 'Pengaturan',
+    title: 'Settings',
     headerTintColor: 'white',
     headerStyle: {
       backgroundColor: '#FF9800'
@@ -22,7 +22,7 @@ class Setting extends Component {
       <View style={styles.container}>
         <Card >
           <Card.Content >
-            <Text style={styles.textTitle}>Notifikasi</Text>
+            <Text style={styles.textTitle}>Notification</Text>
             <View style={{
               flex: 1,
               flexDirection: 'row',
@@ -31,7 +31,7 @@ class Setting extends Component {
               marginBottom:20
             }}>
               <View style={{width: 250, height: 40, }}>
-                <Text style={{paddingTop:5}}>Rekomendasi Via Email</Text>
+                <Text style={{paddingTop:5}}>Recommendation Via Email</Text>
               </View>
               <View style={{width: 40, height: 40, }}>
                 <Checkbox style={styles.input}
@@ -48,7 +48,7 @@ class Setting extends Component {
               marginBottom:30
             }}>
               <View style={{width: 250, height: 40, }}>
-                <Text style={{paddingTop:5}}>Notifikasi Chat</Text>
+                <Text style={{paddingTop:5}}>Chat Notification</Text>
               </View>
               <View style={{width: 40, height: 40, }}>
                 <Checkbox style={styles.input}

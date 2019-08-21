@@ -15,8 +15,8 @@ class Verifikasi extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.Text}>Mengapa Verifikasi Penting ?</Text>
-        <Text style={styles.textTitle}>Verifikasi bisa mencegah akun kamu diretas oleh orang lain, karena untuk mengakses akun tetap membutuhkan kode verifikasi yang hanya deketahui oleh Anda</Text>
+        <Text style={styles.Text}>Why Verification Is Important ?</Text>
+        <Text style={styles.textTitle}>Verification can prevent your account from being hacked by someone else, because accessing your account still requires a verification code that only you know about</Text>
         <TouchableHighlight onPress={this.email}>
         <View style={{
           flex: 1,

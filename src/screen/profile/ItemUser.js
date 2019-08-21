@@ -4,7 +4,7 @@ import {StyleSheet,TouchableHighlight,View,Image,StatusBar} from 'react-native';
 import { Icon } from 'react-native-elements'
 class ItemUser extends Component {
   static navigationOptions = {
-    title: 'Barang dan Jasa',
+    title: 'Item And Service',
     headerTintColor: 'white',
     headerStyle: {
       backgroundColor: '#FF9800'
@@ -17,11 +17,11 @@ class ItemUser extends Component {
       <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
       <View style={styles.coloumn}>
         <View style={styles.colloumStyle}>
-           <Paragraph style={styles.paddingView}>Data Iklan :</Paragraph>
+           <Paragraph style={styles.paddingView}>List Ads :</Paragraph>
         </View>
         <View >
         <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('Ads')}>
-           Iklan
+           Ads
         </Button>
         </View>
       </View>
@@ -32,7 +32,7 @@ class ItemUser extends Component {
           size={150}
           color="#FF9800"
         />
-        <Paragraph style={styles.padding}>Tidak Ada Iklan Anda...</Paragraph>
+        <Paragraph style={styles.padding}>You Don't Have Any Ads</Paragraph>
     </View>
     </View>
     

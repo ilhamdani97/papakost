@@ -1,52 +1,80 @@
 import React, {Component} from 'react';
-import { Paragraph,Button } from 'react-native-paper';
+import { Paragraph,Button,Appbar } from 'react-native-paper';
 import {StyleSheet,TouchableHighlight,View, StatusBar} from 'react-native';
 import { Icon } from 'react-native-elements'
 
 class Loginnull extends Component {
   static navigationOptions = {
-    title: 'Papa Kost',
-    headerTintColor: 'white',
+    headerTintColor: '#FF9800',
     headerStyle: {
-      backgroundColor: '#FF9800'
-    }
+      backgroundColor: 'white',
+      elevation: 0,
+    },
   };
   render() {
     return (
     <View style={styles.container}>
+      <Appbar.Header style={{backgroundColor:'transparent'}}>
+          <Appbar.BackAction color="black"
+                onPress={() => this.props.navigation.goBack()}
+                />
+      </Appbar.Header>
+      <View style={{padding:20,alignContent: 'center',justifyContent:'center'}}>
         <Icon
           name='https'
           size={150}
           color='#FF9800'
         />
-        <Paragraph style={styles.padding}>Please Login First For Unlock Your Happiness</Paragraph>
-        <Button style={styles.padding} color="#FF9800" mode="contained" onPress={() => this.props.navigation.navigate('ClassLogin')}>
-          <Paragraph style={{color:'white'}}>Login</Paragraph>
+        <Paragraph style={styles.padding0}>Please Login First For Unlock Your Happiness</Paragraph>
+      </View>
+      <View style={{backgroundColor:'#FF9800',borderTopLeftRadius:80,borderTopRightRadius:80, height:300}}>
+        <Button style={styles.padding} color="white" mode="contained" onPress={() => this.props.navigation.navigate('ClassLogin')}>
+          <Paragraph style={{color:'black'}}>Login</Paragraph>
         </Button>
-        <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
+        <Button style={styles.padding1} color="#FF9800"  mode="outlined" onPress={() => this.props.navigation.navigate('Register')}>
+          <Paragraph style={{color:'white'}}>Register</Paragraph>
+        </Button>
+      </View>
     </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container:{
-      flexGrow: 1,
-      padding: 20,
-      alignContent: 'center',
-      justifyContent:'center'
+    flexGrow: 1,
+  },
+  padding0:{
+    marginTop:30,
+    textAlign:'center',
+    borderRadius:20,
   },
   padding:{
     padding:8,
-    marginTop:80,
+    marginTop:60,
     textAlign:'center',
-    borderRadius:20
+    borderRadius:20,
+    marginLeft:20,
+    marginRight:20,
+    elevation: 0,
+    justifyContent:'center'
+  },
+  padding1:{
+    padding:8,
+    marginTop:20,
+    textAlign:'center',
+    marginLeft:20,
+    marginRight:20,
+    borderRadius:20,
+    borderColor: 'white',
+    elevation:0
   },
   button:{
     borderRadius:20,
     padding:8,
     marginTop:30,
     textAlign:'center',
-    textDecorationColor:"#FF9800"
+    textDecorationColor:"black",
+
 
   },
   image:{

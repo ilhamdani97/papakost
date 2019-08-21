@@ -8,19 +8,18 @@ import {Marker} from 'react-native-maps';
 
 export default class DetailPage extends Component {
 
-  // static navigationOptions = {
-  //     header: null
-  //   }
+ 
   render() {
     const { width, height } = Dimensions.get('window');
     return (
       <View>
-          <ScrollView showsVerticalScrollIndicator={false}>
-        {/* <Appbar.Header style={{position:'absolute'}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+        
+        <Appbar.Header style={{backgroundColor:'transparent'}}>
             <Appbar.BackAction color="black"
-                  onPress={() => this.props.navigation.navigate('SearchPage')}
-                  />
-        </Appbar.Header> */}
+              onPress={() => this.props.navigation.goBack()}
+              />
+        </Appbar.Header>
         <Image source={{uri:'https://static.mamikos.com/uploads/cache/data/style/2019-08-01/cPEYt5ij-540x720.jpg'}}
         style={{width:width*100/100, height: 200,}}/>
         <View style={{flexDirection:"row", paddingTop: 15, paddingLeft: 20}}>

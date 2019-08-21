@@ -9,7 +9,7 @@ import ImagePicker from 'react-native-image-picker';
 class Ads extends Component {
 
   static navigationOptions = {
-    title: 'Pasang Iklan',
+    title: 'Ads',
     headerTintColor: 'white',
     headerStyle: {
       backgroundColor: '#FF9800'
@@ -45,7 +45,7 @@ onRegionChange(region) {
   this.setState({ region });
 }
    render() {
-    const logo = require('../../image/photo.png')
+    const logo = require('../../assets/photo.png')
     const { width, height } = Dimensions.get('window');
     const { checkbarang,checkjasa,photo } = this.state;
     return (
@@ -53,19 +53,19 @@ onRegionChange(region) {
         <ScrollView>
           <View style={styles.container}>
           <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
-            <Text style={{fontSize: 18,}}>Title</Text>
+            <Text style={styles.font}>Title</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Tulis judul yang sesuai barang atau jasa anda'/>
+              <Input style={styles.inputcolor} placeholder='Insert Here'/>
               <Icon name='star' style={styles.icon}/>
             </Item>
             <Text style={styles.font}>Price of Item</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} keyboardType={'numeric'} placeholder='Total barang/jasa'/>
+              <Input style={styles.inputcolor} keyboardType={'numeric'} placeholder='Insert Here'/>
               <Icon name='star' style={styles.icon}/>
             </Item>
             <Text style={styles.font}>Description</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Deskripsi barang'/>
+              <Input style={styles.inputcolor} placeholder='Insert Here'/>
               <Icon name='star' style={styles.icon}/>
             </Item>
             <Text style={styles.font}>Category</Text>
@@ -92,7 +92,7 @@ onRegionChange(region) {
             <Text style={styles.font}>Search</Text>
             <Item regular style={{marginTop:5}}>
               <Icon style={styles.icon} active name='search' />
-              <Input style={{borderColor: 'red'}} placeholder='Cari penjualan alamat penjual/jasa' />
+              <Input style={{borderColor: 'red'}} placeholder='Insert Here' />
             </Item>
             <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
               Edit Location
@@ -120,7 +120,7 @@ onRegionChange(region) {
             </MapView>
             <Text style={styles.font}>Address</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Masukan alamat lengkap secara keseluruhan'/>
+              <Input style={styles.inputcolor} placeholder='Insert Here'/>
             </Item>
             <Text style={styles.font}>Picture</Text>
             <TouchableHighlight underlayColor="white" onPress={this.handleChoosePhoto}> 
@@ -133,12 +133,12 @@ onRegionChange(region) {
             
             <Text style={{paddingTop:2,fontSize: 16,}}>Name</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Tulis nama anda nama sapaan'/>
+              <Input style={styles.inputcolor} placeholder='Insert Here'/>
               <Icon name='star' style={styles.icon}/>
             </Item>
             <Text style={styles.font}>No Telpon / Hp</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Tulis no telpon'/>
+              <Input style={styles.inputcolor} placeholder='Insert Here'/>
               <Icon name='star' style={styles.icon}/>
             </Item>
           </View>
@@ -194,6 +194,11 @@ const styles = StyleSheet.create({
     marginTop:8,
     width: 110,
     height: 110,
+},
+submit: {
+  marginTop:8,
+  width: 110,
+  height: 110,
 },
 })
 export default Ads;

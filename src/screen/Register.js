@@ -22,7 +22,7 @@ class Login extends Component {
           <View style={{alignContent:'center',alignItems: 'center',margin:20}}>
             <Image
               style={{width: 60, height: 60,justifyContent:'center',alignItems: 'center',}}
-              source={require('../image/man.png')}
+              source={require('../assets/man.png')}
             /> 
             <Text style={{paddingTop:20, color:'white', fontSize:20, paddingBottom:10}}>Register</Text>
           </View>

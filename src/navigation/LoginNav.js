@@ -14,7 +14,7 @@ const LoginNav = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Explore',
             tabBarIcon: ({ tintColor }) => (
-              <Icon name="ios-search" color={tintColor} size={25} />
+              <Icon name="home" color={tintColor} size={25} />
             )
         }
     },
@@ -23,7 +23,7 @@ const LoginNav = createBottomTabNavigator({
         navigationOptions:{
             tabBarLabel: 'Wishlist',
             tabBarIcon:({tintColor})=>(
-                <Icon name="ios-favorite-border" color={tintColor} size={25} />
+                <Icon name="favorite" color={tintColor} size={25} />
             )
         }
     },
@@ -32,7 +32,7 @@ const LoginNav = createBottomTabNavigator({
         navigationOptions:{
             tabBarLabel:'Chat',
             tabBarIcon:({tintColor})=>(
-                <Icon name="chat-bubble-outline" color={tintColor} size={25}/>
+                <Icon name="chat" color={tintColor} size={25}/>
             )
         }
     },
@@ -41,7 +41,7 @@ const LoginNav = createBottomTabNavigator({
         navigationOptions:{
             tabBarLabel:'Profile',
             tabBarIcon:({tintColor})=>{
-                <Icon name="face" color={tintColor} size={25}/> 
+                <Icon name="wifi" color={tintColor} size={25}/> 
             }
         }
     }

@@ -37,18 +37,18 @@ class BookingDuration extends Component {
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({language: itemValue})
               }>
-              <Picker.Item label="1 Month" value="1 Bulan" />
-              <Picker.Item label="2 Month" value="2 Bulan" />
-              <Picker.Item label="3 Month" value="3 Bulan" />
-              <Picker.Item label="4 Month" value="4 Bulan" />
-              <Picker.Item label="5 Month" value="5 Bulan" />
-              <Picker.Item label="6 Month" value="6 Bulan" />
-              <Picker.Item label="7 Month" value="7 Bulan" />
-              <Picker.Item label="8 Month" value="8 Bulan" />
-              <Picker.Item label="9 Month" value="9 Bulan" />
-              <Picker.Item label="10 Month" value="10 Bulan" />
-              <Picker.Item label="11 Month" value="11 Bulan" />
-              <Picker.Item label="12 Month" value="12 Bulan" />
+              <Picker.Item label="1 Month" value="1 Month" />
+              <Picker.Item label="2 Month" value="2 Month" />
+              <Picker.Item label="3 Month" value="3 Month" />
+              <Picker.Item label="4 Month" value="4 Month" />
+              <Picker.Item label="5 Month" value="5 Month" />
+              <Picker.Item label="6 Month" value="6 Month" />
+              <Picker.Item label="7 Month" value="7 Month" />
+              <Picker.Item label="8 Month" value="8 Month" />
+              <Picker.Item label="9 Month" value="9 Month" />
+              <Picker.Item label="10 Month" value="10 Month" />
+              <Picker.Item label="11 Month" value="11 Month" />
+              <Picker.Item label="12 Month" value="12 Month" />
             </Picker>
           </View>
         </View>
