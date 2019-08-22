@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import { Provider as PaperProvider,Text,Card,Title,Paragraph,IconButton,Checkbox, Colors,List } from 'react-native-paper';
 import {StyleSheet,TouchableHighlight,View,} from 'react-native';
 import { Icon } from 'react-native-elements'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 class Setting extends Component {
   _logoutAsync = async () => {
     try {
       await AsyncStorage.clear()
+      this.props.navigation.navigate('PublicStack')
     } catch(e) {}
-    this.props.navigation.navigate('PublicStack')
   };
   static navigationOptions =
   {

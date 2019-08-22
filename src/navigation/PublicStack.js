@@ -9,7 +9,7 @@ import LoginStack from '../navigation/LoginStack'
 import ClassLogin from '../screen/login/Login'
 import Register from '../screen/login/Register'
 import SearchPage from '../screen/SearchPage'
-import DetailPage from '../screen/DetailPage'
+import Detail from '../screen/DetailPage'
 import Filter from '../screen/Filter';
 import Login from '../screen/LoginPage'
 import Ads from '../screen/ads/Ads'
@@ -23,7 +23,7 @@ const SatckPublic = createStackNavigator({
     ClassLogin:ClassLogin,
     Register:Register,
     SearchPage:SearchPage,
-    DetailPage:DetailPage,
+    Detail:Detail,
     Filter:Filter,
     Login:Login,
     Ads:Ads

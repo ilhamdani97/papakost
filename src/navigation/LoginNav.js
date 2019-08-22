@@ -36,13 +36,14 @@ const LoginNav = createBottomTabNavigator({
             )
         }
     },
+   
     Profile:{
         screen:Profile,
         navigationOptions:{
             tabBarLabel:'Profile',
-            tabBarIcon:({tintColor})=>{
-                <Icon name="wifi" color={tintColor} size={25}/> 
-            }
+            tabBarIcon:({tintColor})=>(
+                <Icon name="face" color={tintColor} size={25}/>
+            )
         }
     }
 }, {
