@@ -42,9 +42,9 @@ export default class DetailPage extends Component {
             </View>
             <View style={{ paddingLeft: 18 }}>
               <TouchableOpacity onPress={() => Share.share({
-                message: 'BAM: we\'re helping your business with awesome React Native apps',
-                url: 'http://bam.tech',
-                title: 'Wow, did you see that?'
+                message: 'Call owner Dorms'+data.createdBy.no_tlp,
+                url: 'papakost.com',
+                title: 'Papa Kost'
               }, {
                   // Android only:
                   dialogTitle: 'Share ',

@@ -8,8 +8,7 @@ class Setting extends Component {
   logout = async () => {
     try {
       await AsyncStorage.clear();
-      this.props.navigation.navigate('CheckStack')
-      alert('Thanks for visiting')
+      this.props.navigation.navigate('RootStack')
     } catch(e) {
       console.log(e)
       alert('failed to logout')

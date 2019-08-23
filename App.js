@@ -3,14 +3,14 @@ import { createStackNavigator, createAppContainer, createSwitchNavigator } from 
 
 import LoginStack from './src/navigation/LoginStack'
 import PublicStack from './src/navigation/PublicStack'
-import CheckStack from './src/navigation/CheckStack'
+import RootStack from './src/navigation/RootStack'
 
 const AppNavigator = createSwitchNavigator({
   LoginStack: LoginStack,
   PublicStack: PublicStack,
-  CheckStack: CheckStack
+  RootStack:RootStack
 }, {
-    initialRouteName: 'CheckStack'
+    initialRouteName: 'RootStack'
   })
 const AppContainer = createAppContainer(AppNavigator);
 
