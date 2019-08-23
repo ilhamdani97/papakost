@@ -14,16 +14,16 @@ export default class DetailPage extends Component {
 
   }
   toRupiah = (price) => {
-    let rupiah = '';		
+    let rupiah = '';
     let convert = price.toString().split('').reverse().join('');
-    for(var i = 0; i < convert.length; i++) if(i%3 == 0) rupiah += convert.substr(i,3)+'.';
-    return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
+    for (var i = 0; i < convert.length; i++) if (i % 3 == 0) rupiah += convert.substr(i, 3) + '.';
+    return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('');
   }
   render() {
     const { navigation } = this.props;
     const { width, height } = Dimensions.get('window');
     const data = navigation.getParam('dorms');
-   
+
 
     return (
       <View>
@@ -87,9 +87,8 @@ export default class DetailPage extends Component {
                   latitude: data.latitude,
                   longitude: data.longitude,
                   latitudeDelta: 0.015,
-                  longitudeDelta: 0.0121,
+                  longitudeDelta: 0.0121
                 }}
-
               >
                 <Marker
                   coordinate={
@@ -98,8 +97,8 @@ export default class DetailPage extends Component {
                       longitude: data.longitude
                     }
                   }
-                  title={"marker.title"}
-                  description={"marker.description"}
+                  title={data.name_kost}
+                  description={data.description}
                 />
               </MapView>
             </View>
