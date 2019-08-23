@@ -5,11 +5,15 @@ import { Icon } from 'react-native-elements'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 class Setting extends Component {
-  _logoutAsync = async () => {
+  logout = async () => {
     try {
-      await AsyncStorage.clear()
-      this.props.navigation.navigate('PublicStack')
-    } catch(e) {}
+      await AsyncStorage.clear();
+      this.props.navigation.navigate('CheckStack')
+      alert('Thanks for visiting')
+    } catch(e) {
+      console.log(e)
+      alert('failed to logout')
+    }
   };
   static navigationOptions =
   {
@@ -66,7 +70,7 @@ class Setting extends Component {
             </View>
           </Card.Content>
         </Card>
-        <TouchableHighlight onPress={()=> this._logoutAsync()} underlayColor="white">
+        <TouchableHighlight onPress={()=> this.logout()} underlayColor="white">
         <Card style={styles.paddingTop}>
           <Card.Content >
             <View style={{

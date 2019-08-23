@@ -19,7 +19,7 @@ class Login extends Component {
     }
   }
   componentDidMount() {
-    axios.get('http://192.168.1.14:3500/api/users')
+    axios.get('https://papakost.herokuapp.com/api/users')
       .then(response => {
         this.setState({
           fatchUser: response.data
@@ -46,7 +46,7 @@ class Login extends Component {
         handphone: this.state.textHandphone,
         password: this.state.textPassword
       }
-      await axios.post("http://192.168.1.14:3500/api/login", {
+      await axios.post("https://papakost.herokuapp.com/api/login", {
         no_tlp: tempUser.handphone,
         password: tempUser.password
       })

@@ -14,7 +14,7 @@ import Filter from '../screen/Filter';
 import Login from '../screen/LoginPage'
 import Ads from '../screen/ads/Ads'
 
-const SatckPublic = createStackNavigator({
+const SatackPublic = createStackNavigator({
     PublicNav:PublicNav,
     Explore:Explore,
     Wishlist:Wishlist,
@@ -40,4 +40,4 @@ class PublicStack extends Component {
       );
     }
   }
-  export default SatckPublic;
+  export default SatackPublic;

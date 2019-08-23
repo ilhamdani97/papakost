@@ -37,7 +37,7 @@ class Register extends Component {
       );
       const response = await axios({
         method: "post",
-        url: "http://192.168.1.14:3500/api/register",
+        url: "https://papakost.herokuapp.com/api/register",
         data: {
           email: state.email,
           user_name: state.user_name,

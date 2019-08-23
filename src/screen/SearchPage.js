@@ -21,9 +21,14 @@ class SearchPage extends Component {
             detail: []
         };
     }
-
+    toRupiah = (price) => {
+        let rupiah = '';		
+        let convert = price.toString().split('').reverse().join('');
+        for(var i = 0; i < convert.length; i++) if(i%3 == 0) rupiah += convert.substr(i,3)+'.';
+        return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
+      }
     componentDidMount() {
-        axios.get("http://192.168.1.14:3500/api/details")
+        axios.get("https://papakost.herokuapp.com/api/dorms")
             .then(response => {
                 const detail = response.data;
                 this.setState({ detail });
@@ -45,7 +50,7 @@ class SearchPage extends Component {
     renderItem = ({ item }) => {
         const { width, height } = Dimensions.get('window');
         return (
-            <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { rows: item })} underlayColor="white">
+            <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { dorms: item })} underlayColor="white">
                 <View style={{ flex: 1, width: width * 94 / 100,  }} >
                     <Card style={{ marginTop: 10 }}
                         image={{ uri: item.image }}
@@ -55,7 +60,7 @@ class SearchPage extends Component {
                             {item.name_kost}
                         </Text>
                         <Text style={{ marginBottom: 6, fontWeight: 'bold' }}>
-                            Rp.{item.price}
+                            {this.toRupiah(item.price)}
                         </Text>
                         <Text style={{ marginBottom: 6 }}>
                             {item.address_kost}
@@ -63,7 +68,7 @@ class SearchPage extends Component {
                         <View style={{ flex: 1, flexDirection: 'row', marginTop: 6 }}>
                             <View style={{ width: width * 62 / 100 }} >
                                 <View style={{ height: 26, width: 130, backgroundColor: "#FF9800", borderRadius: 50 }}>
-                                    <Text style={{ fontSize: 16, color: "white", textAlign: "center", justifyContent: "center" }}>{item.booking_availabel}</Text>
+                                    <Text style={{ fontSize: 13,marginTop:2, color: "white", textAlign: "center", justifyContent: "center" }}>{item.booking_availabel}</Text>
                                 </View>
                             </View>
                             <View style={{ width: width * 30 / 100 }} >

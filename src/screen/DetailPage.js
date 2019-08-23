@@ -13,10 +13,18 @@ export default class DetailPage extends Component {
     params = props.navigation.state.params.rows
 
   }
+  toRupiah = (price) => {
+    let rupiah = '';		
+    let convert = price.toString().split('').reverse().join('');
+    for(var i = 0; i < convert.length; i++) if(i%3 == 0) rupiah += convert.substr(i,3)+'.';
+    return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
+  }
   render() {
     const { navigation } = this.props;
     const { width, height } = Dimensions.get('window');
-    const data = navigation.getParam('rows');
+    const data = navigation.getParam('dorms');
+   
+
     return (
       <View>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -98,7 +106,7 @@ export default class DetailPage extends Component {
             <Text style={{ color: 'black', paddingTop: 25, fontWeight: 'bold' }}>About This Kost:</Text>
             <Text style={{ color: 'black', paddingTop: 10 }}>{data.description}</Text>
             <View style={{ borderRadius: 8, alignItems: 'center', backgroundColor: '#FF9800', marginTop: 15, marginBottom: 10, height: 80 }}>
-              <Text style={{ color: 'white', fontSize: 20, paddingLeft: 5, paddingBottom: 4 }}>Rp.{data.price},00</Text>
+              <Text style={{ color: 'white', fontSize: 20, paddingLeft: 5, paddingBottom: 4 }}>{this.toRupiah(data.price)}</Text>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingDate')}>
                 <Button style={{ padding: 2, margin: 2, backgroundColor: '#FF9800', borderRadius: 5, borderWidth: 1, borderColor: '#fff' }}><Text style={{ color: '#fff' }}>Booking</Text></Button>
               </TouchableOpacity>
