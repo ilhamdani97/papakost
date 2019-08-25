@@ -1,74 +1,73 @@
-import React,{Component} from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
-import { Appbar,IconButton} from 'react-native-paper'
 
 import Explore from '../screen/ExplorePage'
 import WishList from '../screen/WishlistPage'
 import Chat from '../screen/ChatPage'
 import Login from '../screen/LoginPage'
-import { Card,Icon} from "react-native-elements";
+import { Icon } from "react-native-elements";
 
 const PublicNav = createBottomTabNavigator({
-    Explore:{
+    Explore: {
         screen: Explore,
         navigationOptions: {
             tabBarLabel: 'Explore',
             tabBarIcon: ({ tintColor }) => (
-              <Icon name="home" color={tintColor} size={25} />
+                <Icon name="home" color={tintColor} size={25} />
             )
         }
     },
-    Wishlist:{
+    Wishlist: {
         screen: WishList,
-        navigationOptions:{
+        navigationOptions: {
             tabBarLabel: 'Wishlist',
-            tabBarIcon:({tintColor})=>(
+            tabBarIcon: ({ tintColor }) => (
                 <Icon name="favorite" color={tintColor} size={25} />
             )
         }
     },
-    Chat:{
+    Chat: {
         screen: Chat,
-        navigationOptions:{
-            tabBarLabel:'Chat',
-            tabBarIcon:({tintColor})=>(
-                <Icon name="chat" color={tintColor} size={25}/>
+        navigationOptions: {
+            tabBarLabel: 'Chat',
+            tabBarIcon: ({ tintColor }) => (
+                <Icon name="chat" color={tintColor} size={25} />
             )
         }
     },
-    Login:{
-        screen:Login,
-        navigationOptions:{
-            tabBarLabel:'Login',
-            tabBarIcon:({tintColor})=>(
-                <Icon name="face" color={tintColor} size={25}/>
+    Login: {
+        screen: Login,
+        navigationOptions: {
+            tabBarLabel: 'Login',
+            tabBarIcon: ({ tintColor }) => (
+                <Icon name="face" color={tintColor} size={25} />
             )
         }
     }
 }, {
-    tabBarOptions: {
-    activeTintColor: '#FF9800',
-    inactiveTintColor: '#FFA726',
-    style: {
-    backgroundColor: '#ffffff',
-    borderTopWidth: 0,
-    shadowOffset: { width: 6, height: 6 },
-    shadowColor: 'black',
-    shadowOpacity: 0.5,
-    elevation: 6,
-    paddingTop: 10
-    }
-}
-});
+        tabBarOptions: {
+            activeTintColor: '#FF9800',
+            inactiveTintColor: '#FFA726',
+            style: {
+                backgroundColor: '#ffffff',
+                borderTopWidth: 0,
+                shadowOffset: { width: 6, height: 6 },
+                shadowColor: 'black',
+                shadowOpacity: 0.5,
+                elevation: 6,
+                paddingTop: 10
+            }
+        }
+    });
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-  });
+});
 
-  export default createAppContainer(PublicNav)
+export default createAppContainer(PublicNav)

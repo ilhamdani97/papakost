@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {createStackNavigator, createAppContainer} from 'react-navigation'
+import React, { Component } from 'react'
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
-import LoginNav from '../navigation/LoginNav'
+import LoginNav from './LoginNav'
 import Explore from '../screen/ExplorePage'
 import Search from '../screen/explore/SearchPage'
 import Detail from '../screen/explore/DetailPage'
@@ -22,32 +22,32 @@ import Verification from '../screen/profile/Verifikasi'
 import Ads from '../screen/ads/Ads'
 
 const StackLogin = createStackNavigator({
-    LoginNav:LoginNav,
-    Explore:Explore,
-    Search:Search,
-    Detail:Detail,
-    Profile:Profile,
-    BookingDate:BookingDate,
-    Booking:Booking,
-    BookingDetail:BookingDetail,
-    BookingItem:BookingItem,
-    BookingSucces:BookingSucces,
+    LoginNav: LoginNav,
+    Explore: Explore,
+    Search: Search,
+    Detail: Detail,
+    Profile: Profile,
+    BookingDate: BookingDate,
+    Booking: Booking,
+    BookingDetail: BookingDetail,
+    BookingItem: BookingItem,
+    BookingSucces: BookingSucces,
     BookingDuration: BookingDuration,
-    BookingList:BookingList,
-    Complain:Complain,
-    Contract:Contract,
-    ItemUser:ItemUser,
-    Market:Market,
-    Setting:Setting,
-    Verification:Verification,
-    Ads:Ads,
+    BookingList: BookingList,
+    Complain: Complain,
+    Contract: Contract,
+    ItemUser: ItemUser,
+    Market: Market,
+    Setting: Setting,
+    Verification: Verification,
+    Ads: Ads,
 
 }, {
-    initialRouteName: "LoginNav",
-    headerMode: 'none'
-});
+        initialRouteName: "LoginNav",
+        headerMode: 'none'
+    });
 
-class LoginStack extends Component{
+class LoginStack extends Component {
     render() {
         return (
             <LoginStack />

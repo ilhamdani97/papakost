@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import { createStackNavigator, createAppContainer } from "react-navigation"
 
-import PublicNav from '../navigation/PublicNav'
+import PublicNav from './PublicNav'
 import Explore from '../screen/ExplorePage'
 import Wishlist from '../screen/WishlistPage'
 import Loginnul from '../screen/LoginPage'
-import LoginStack from '../navigation/LoginStack'
+import LoginStack from './LoginStack'
 import ClassLogin from '../screen/login/Login'
 import Register from '../screen/login/Register'
 import SearchPage from '../screen/SearchPage'

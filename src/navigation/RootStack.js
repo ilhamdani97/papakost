@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
 import {
   ActivityIndicator,
-  StatusBar,
   StyleSheet,
   View,
   Text
@@ -53,5 +52,4 @@ const styles = StyleSheet.create({
   }
 })
 
-//export default App;
 export default RootStack;
