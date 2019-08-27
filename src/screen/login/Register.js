@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Item, Input, Icon } from 'native-base';
 import axios from "axios";
+import { URL_API } from 'react-native-dotenv'
 class Register extends Component {
   static navigationOptions = {
     headerTintColor: 'white',
@@ -37,7 +38,7 @@ class Register extends Component {
       );
       const response = await axios({
         method: "post",
-        url: "https://papakost.herokuapp.com/api/register",
+        url: `${URL_API}register`,
         data: {
           email: state.email,
           user_name: state.user_name,

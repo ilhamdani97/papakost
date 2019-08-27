@@ -9,6 +9,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
     "axios": "^0.19.0",
+    "babel-preset-react-native": "^4.0.1",
     "fb-watchman": "^2.0.0",
     "moment": "^2.24.0",
     "native-base": "^2.13.4",
@@ -47,6 +48,7 @@
     "babel-jest": "24.8.0",
     "jest": "24.8.0",
     "metro-react-native-babel-preset": "0.55.0",
+    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.8.3"
   },
   "jest": {
