@@ -20,7 +20,7 @@ class RootStack extends Component {
 
   bootstrapAsync = async () => {
     try {
-      const fetchData = await AsyncStorage.getItem('key')
+      const fetchData = await AsyncStorage.getItem('token')
       if (fetchData != null) {
         this.props.navigation.navigate('LoginStack')
       } else {

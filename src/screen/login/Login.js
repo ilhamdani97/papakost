@@ -14,7 +14,7 @@ class Login extends Component {
     this.state = {
       textHandphone: "",
       textPassword: "",
-      key: "",
+      token: "",
       fatchUser: ""
     }
   }
@@ -46,20 +46,20 @@ class Login extends Component {
         handphone: this.state.textHandphone,
         password: this.state.textPassword
       }
-      await axios.post(`${URL_API}login`, {
+      await axios.post(`${URL_API}`, {
         no_tlp: tempUser.handphone,
         password: tempUser.password
       })
         .then((response) => {
-          if (typeof response.data.key !== 'undefined') {
-            AsyncStorage.setItem('key', response.data.key)
+          if (typeof response.data.token !== 'undefined') {
+            AsyncStorage.setItem('token', response.data.token)
             this.props.navigation.navigate('LoginStack')
           } else {
             alert('Wrong No Hanphone and Password ...')
           }
         })
-        .catch((error) => {
-          alert(error)
+        .catch((response) => {
+          alert('Wrong No Hanphone and Password ...')
         })
     } catch (e) {
       console.log(e)
@@ -90,7 +90,7 @@ class Login extends Component {
           <View style={{ padding: 20, paddingTop: 35 }}>
             <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
               <Icon style={styles.icon} active name='calculator' />
-              <Input placeholder='No. Handphone' keyboardType={'numeric'}
+              <Input placeholder='No. Handphone' tokenboardType={'numeric'}
                 onChangeText={this._handleHanphone}
               />
             </Item>

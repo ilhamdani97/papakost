@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, FlatList, Text, Dimensions, TouchableOpacity, Share, ScrollView, TouchableHighlight } from 'react-native';
+import { StyleSheet, TextInput, FlatList,ActivityIndicator, Text, Dimensions, TouchableOpacity, Share, ScrollView, TouchableHighlight } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { View } from 'native-base';
 import { Card, Icon } from "react-native-elements";
@@ -18,7 +18,8 @@ class SearchPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            detail: []
+            detail: [],
+            dorms: null
         };
     }
     toRupiah = (price) => {
@@ -41,7 +42,16 @@ class SearchPage extends Component {
 
     render() {
         const { width, height } = Dimensions.get('window');
-
+        
+        if (!this.state.dorms) {
+            return (
+              <ActivityIndicator
+                animating={true}
+                style={styles.indicator}
+                size="large"
+              />
+            );
+          }
         return (
             <View style={{ backgroundColor: 'white', marginBottom: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -51,7 +61,8 @@ class SearchPage extends Component {
                         />
                         <TextInput style={styles.header} placeholder="Search Here" />
                     </Appbar.Header>
-                    {this.props.dorms.data.length !== 0 && this.props.dorms.data.map((item, i) => (
+                    
+                    {this.props.dorms.data.map((item, i) => (
                         <View key={i}>
                             <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { dorms: item })} underlayColor="white">
                                 <View style={{ flex: 1, width: width * 100 / 100, }} >
@@ -107,6 +118,12 @@ const styles = StyleSheet.create({
     },
     card: {
     },
+    indicator: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 80
+      },
     row: {
         padding: 5,
         marginBottom: 5,
