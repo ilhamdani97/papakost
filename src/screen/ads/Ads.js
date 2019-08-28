@@ -79,6 +79,7 @@ class Ads extends Component {
       }
     })
   }
+
   onProvinceChange = async (value) => {
 
     await this.setState({
@@ -120,40 +121,6 @@ class Ads extends Component {
     })
 }
 
-  //   onAds = () => {
-  //     this.actAdsAysync()
-  // }
-
-  // async componentWillMount() {
-  //     const token = await AsyncStorage.getItem('key')
-  //     this.setState({
-  //         key: token
-  //     })
-  // }
-
-  // actAdsAysync = async () => {
-  //     // try {
-  //     let tempUser = {
-  //               name_kost: state.name_kost,
-  //               price: state.price,
-  //               description: state.description,
-  //               address_kost: state.address_kost,
-  //               longitude: state.region.longitude,
-  //               latitude: state.region.latitude
-  //     }
-  //     await axios.post('https://papakost.herokuapp.com/api/dorm', tempUser, {
-  //         headers: {
-  //             authorization: 'Bearer ' + AsyncStorage.getItem('key')
-  //         }
-  //     })
-  //         .then((response) => {
-  //             alert(tempUser)
-  //             this.props.navigation.navigate('LoginStack')
-  //         })
-  //         .catch((error) => {
-  //             alert(error)
-  //         });
-  // }
   onAds = async () => {
     let tempDorms = {
       name_kost: this.state.name_kost,
@@ -200,7 +167,7 @@ class Ads extends Component {
   render() {
     const logo = require('../../assets/photo.png')
     const { width, height } = Dimensions.get('window')
-    console.warn(this.state.photo);
+    // console.warn(this.state.photo);
     return (
       <View>
         <ScrollView>
@@ -256,10 +223,6 @@ class Ads extends Component {
               />
             </MapView>
 
-            {/* <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
-              Edit Location
-            </Button> */}
-
             {/* lat long */}
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1, paddingLeft: 5, paddingRight: 5, }}>
@@ -283,9 +246,7 @@ class Ads extends Component {
                 mode="dropdown"
                 style={{ width: 120, color: 'black', }}
                 selectedValue={this.state.selectedProvince}
-                onValueChange={this.onProvinceChange}
-
-              >
+                onValueChange={this.onProvinceChange}>
 
                 {this.state.province.map((data, index) => (
                   <Picker.Item key={index} label={data.nama} value={data.id} />
@@ -316,29 +277,7 @@ class Ads extends Component {
               <Text>Upload Gambar</Text>
             </Button>
 
-            {/* Category */}
-            {/* <Text style={styles.font}>Category</Text>
-            <View style={{flex: 1, flexDirection: 'row', marginTop:5}}>
-              <View style={{width: 40, height: 40, }}>
-                <Checkbox style={styles.input}
-                  status={checkbarang? 'checked' : 'unchecked'}
-                  onPress={() => { this.setState({ checkbarang: !checkbarang }); }}
-                />
-              </View>
-              <View style={{width: 140, height: 40,}} >
-                <Text style={{marginTop:8,marginLeft:2}}>Item</Text>
-              </View>
-              <View style={{width: 40, height: 40, }}>
-                <Checkbox style={styles.input}
-                  status={checkjasa ? 'checked' : 'unchecked'}
-                  onPress={() => { this.setState({ checkjasa: !checkjasa }); }}
-                />
-              </View>
-              <View style={{width: 140, height: 40, }}>
-                <Text style={{marginTop:8,marginLeft:2}}>Service</Text>
-              </View>
-            </View> */}
-
+           
             {/* description kos */}
             <Text style={styles.font}>Description</Text>
             <Item style={styles.input}>
@@ -347,17 +286,6 @@ class Ads extends Component {
                 value={this.state.description} />
               <Icon name='star' style={styles.icon} />
             </Item>
-
-            {/* facility */}
-            {/* <Text style={styles.font}>Facility</Text>
-            <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Insert Here'
-              onChangeText={text =>this.handleChange(text, "facility")}
-              value={this.state.facility}/>
-              <Icon name='star' style={styles.icon}/>
-            </Item> */}
-
-
 
             {/* name of owner */}
             <Text style={{ paddingTop: 2, fontSize: 16, }}>Name</Text>
@@ -389,6 +317,7 @@ class Ads extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,

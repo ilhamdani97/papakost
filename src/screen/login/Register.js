@@ -58,7 +58,7 @@ class Register extends Component {
   }
   render() {
     return (
-      <ScrollView>
+<ScrollView>
         <View style={styles.container}>
           <Appbar.Header style={{ backgroundColor: '#FF9800' }}>
             <Appbar.BackAction color="white"
@@ -76,51 +76,63 @@ class Register extends Component {
               <Text style={{ paddingTop: 20, color: 'white', fontSize: 20, paddingBottom: 10 }}>Register</Text>
             </View>
           </View>
-          <View style={{ padding: 20, paddingTop: 35 }}>
-            <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
-              <Icon style={styles.icon} active name='paper' />
-              <Input placeholder='Email' autoCapitalize='none'
-                onChangeText={text => this.handleChange(text, "email")}
-                value={this.state.email}
-              />
-            </Item>
+          
+          <View style={{ padding: 20 }}>
+
+            <View style={{ paddingTop: 20 }}>
+              <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
+                <Icon style={styles.icon} active name='person' />
+                <Input placeholder='Full Name'
+                  onChangeText={text => this.handleChange(text, "full_name")}
+                  value={this.state.full_name}
+                />
+              </Item>
+            </View>
+
+            <View style={{ paddingTop: 20 }}>
+              <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
+                <Icon style={styles.icon} active name='paper' />
+                <Input placeholder='Username' italize='none'
+                  onChangeText={text => this.handleChange(text, "user_name")}
+                  value={this.state.user_name}
+                />
+              </Item>
+            </View>
+            
+            <View style={{ paddingTop: 20 }}>
+              <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
+                <Icon style={styles.icon} active name='paper' />
+                <Input placeholder='Email' autoCapitalize='none'
+                  onChangeText={text => this.handleChange(text, "email")}
+                  value={this.state.email}
+                />
+              </Item>
+            </View>
+
+
+
+            <View style={{ paddingTop: 20 }}>
+              <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
+                <Icon style={styles.icon} active name='keypad' />
+                <Input placeholder='No. Hanphone' keyboardType={'numeric'}
+                  onChangeText={text => this.handleChange(text, "no_tlp")}
+                  value={this.state.no_tlp}
+                />
+              </Item>
+            </View>
+
+            <View style={{ paddingTop: 20 }}>
+              <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
+                <Icon style={styles.icon} active name='eye' />
+                <Input placeholder='Password' secureTextEntry={true}
+                  onChangeText={text => this.handleChange(text, "password")}
+                  value={this.state.password}
+                />
+              </Item>
+            </View>
+
           </View>
-          <View style={{ padding: 20, paddingTop: 35 }}>
-            <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
-              <Icon style={styles.icon} active name='paper' />
-              <Input placeholder='Username' italize='none'
-                onChangeText={text => this.handleChange(text, "user_name")}
-                value={this.state.user_name}
-              />
-            </Item>
-          </View>
-          <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 5 }}>
-            <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
-              <Icon style={styles.icon} active name='person' />
-              <Input placeholder='Full Name'
-                onChangeText={text => this.handleChange(text, "full_name")}
-                value={this.state.full_name}
-              />
-            </Item>
-          </View>
-          <View style={{ padding: 20, paddingTop: 25 }}>
-            <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
-              <Icon style={styles.icon} active name='keypad' />
-              <Input placeholder='No. Hanphone' keyboardType={'numeric'}
-                onChangeText={text => this.handleChange(text, "no_tlp")}
-                value={this.state.no_tlp}
-              />
-            </Item>
-          </View>
-          <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 8 }}>
-            <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
-              <Icon style={styles.icon} active name='eye' />
-              <Input placeholder='Password' secureTextEntry={true}
-                onChangeText={text => this.handleChange(text, "password")}
-                value={this.state.password}
-              />
-            </Item>
-          </View>
+
           <View style={{ padding: 20 }}>
             <Button style={{ height: 40, borderRadius: 25, backgroundColor: '#FF9800' }} color="black" mode="contained"
               onPress={() => {
