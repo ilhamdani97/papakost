@@ -19,7 +19,7 @@ class SearchPage extends Component {
         super(props)
         this.state = {
             detail: [],
-            data: null
+            data: ""
         };
     }
     toRupiah = (price) => {
@@ -47,6 +47,8 @@ class SearchPage extends Component {
         };
 
     render() {
+        console.log(this.state.data);
+        
         const { width, height } = Dimensions.get('window');
         if (!this.state.data) {
             return (
@@ -66,13 +68,14 @@ class SearchPage extends Component {
                         />
                         <TextInput style={styles.header} placeholder="Search Here" />
                     </Appbar.Header>
-
+                    
                     {this.props.dorms.data.map((item, i) => (
+                        
                         <View key={i}>
                             <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { dorms: item })} underlayColor="white">
                                 <View style={{ flex: 1, width: width * 100 / 100, }} >
                                     <Card style={{ marginTop: 10 }}
-                                        image={{ uri: item.image }}
+                                        image={{ uri:`http://192.168.1.24:3000/images/${item.image}` }}
                                         containerStyle={{ padding: 2 }}
                                     >
                                         <Text style={{ marginBottom: 10 }}>

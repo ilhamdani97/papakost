@@ -21,7 +21,7 @@ class Ads extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      image: null,
+      image:"",
       name_kost: "",
       price: "",
       stock_room: "",
@@ -53,7 +53,7 @@ class Ads extends Component {
       title: 'choose photo',
       storageOptions: {
         skipBackup: true,
-        path: '../../assets/image'
+        path: 'image'
       },
     }
     ImagePicker.showImagePicker(options, (response) => {
@@ -63,18 +63,14 @@ class Ads extends Component {
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        const source = response.uri;
+        let tmpPhoto = {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+        };
+        const source = tmpPhoto;
         this.setState({
-          // src :    [...this.state.src, source],
-          // data : {
-          //     ...this.state.data,
-          //     images : [
-          //         ...this.state.data.images,
-          //         source.uri
-          //     ]
-          // }
-
-          photo: source
+          image: source
         })
       }
     })
@@ -129,12 +125,27 @@ class Ads extends Component {
       description: this.state.description,
       address_kost: this.state.address_kost,
       longitude: this.state.region.longitude,
-      latitude: this.state.region.latitude
+      latitude: this.state.region.latitude,
+      image: this.state.image
     }
-    await axios.post(URL_API +'dorm', tempDorms, {
+
+    let data = new FormData()
+    data.append('name_kost', this.state.name_kost)
+    data.append('price', this.state.price)
+    data.append('stock_room', this.state.stock_room)
+    data.append('description', this.state.description)
+    data.append('address_kost', this.state.address_kost)
+    data.append('longitude', this.state.region.longitude)
+    data.append('latitude', this.state.region.latitude)
+    data.append('images', this.state.image
+    )
+
+
+
+    await axios.post(URL_API +'dorm', data, {
         headers: {
-            authorization: await AsyncStorage.getItem('token')
-        }
+            authorization: await AsyncStorage.getItem('token'),  'Content-Type': 'multipart/form-data'
+        }, 
     })
         .then((response) => {
             alert(tempDorms)
@@ -165,6 +176,8 @@ class Ads extends Component {
     this.setState({ region });
   }
   render() {
+    // console.log(this.state);
+    
     const logo = require('../../assets/photo.png')
     const { width, height } = Dimensions.get('window')
     // console.warn(this.state.photo);
@@ -271,7 +284,7 @@ class Ads extends Component {
             {/* Picture */}
             <Text style={styles.font}>Picture</Text>
             <View style={{ height: 200, width: '100%', padding: 5 }}>
-              <Image source={{ uri: this.state.photo }} style={{ height: '100%', width: '100%', resizeMode: 'cover' }} />
+              <Image source={this.state.image} style={{ height: '100%', width: '100%', resizeMode: 'cover' }} />
             </View>
             <Button onPress={this.handleImagePicker} style={{ borderRadius: 10, backgroundColor: '#FF9800', width: 200 }}>
               <Text>Upload Gambar</Text>
@@ -284,24 +297,6 @@ class Ads extends Component {
               <Input style={styles.inputcolor} placeholder='Insert Here'
                 onChangeText={text => this.handleChange(text, "description")}
                 value={this.state.description} />
-              <Icon name='star' style={styles.icon} />
-            </Item>
-
-            {/* name of owner */}
-            <Text style={{ paddingTop: 2, fontSize: 16, }}>Name</Text>
-            <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Owner Name'
-                onChangeText={text => this.handleChange(text, "name")}
-                value={this.state.name} />
-              <Icon name='star' style={styles.icon} />
-            </Item>
-
-            {/* no handphone owner */}
-            <Text style={styles.font}>No Telpon / Hp</Text>
-            <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Owner Phone'
-                onChangeText={text => this.handleChange(text, "no_tlp")}
-                value={this.state.no_tlp} />
               <Icon name='star' style={styles.icon} />
             </Item>
           </View>
