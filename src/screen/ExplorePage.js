@@ -38,7 +38,7 @@ export default class ExplorePage extends Component {
     this.checkLogin()
   }
   checkLogin = async () => {
-    const fetchData = await AsyncStorage.getItem('key')
+    const fetchData = await AsyncStorage.getItem('token')
     if (fetchData) {
       this.setState({
         isLogin: true

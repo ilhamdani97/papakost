@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Text, Button, Checkbox } from 'react-native-paper';
+import { Text, Card, Paragraph, Button, Colors, Checkbox, IconButton } from 'react-native-paper';
 import { StyleSheet, TouchableHighlight, View, ScrollView, Image, Dimensions, StatusBar } from 'react-native';
-import { Item, Input, Icon } from 'native-base';
+import { Item, Input, Label, Icon, Picker } from 'native-base';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import ImagePicker from 'react-native-image-picker';
+import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios'
+import { URL_API } from 'react-native-dotenv'
 
-
-const { width, height } = Dimensions.get('window');
 class Ads extends Component {
   static navigationOptions = {
     title: 'Ads',
@@ -16,139 +17,373 @@ class Ads extends Component {
       backgroundColor: '#FF9800'
     }
   };
-  handleChoosePhoto = () => {
-    const options = {
-      noData: true,
-    };
-    ImagePicker.launchImageLibrary(options, response => {
-      if (response.uri) {
-        this.setState({ photo: response });
-      }
-    });
-  };
-  state = {
-    photo: null,
-    checkbarang: false,
-    checkjasa: false,
-  };
-  getInitialState() {
-    return {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      image: null,
+      name_kost: "",
+      price: "",
+      stock_room: "",
+      description: "",
+      address_kost: "",
+      province: [],
+      selectedCity: "",
+      token: '',
+      selectedProvince: "",
+      cities: [],
       region: {
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: -6.280229,
+        longitude: 106.710818,
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.0121,
       },
-    };
+      markerRegion:
+      {
+        latitude: -6.90389,
+        longitude: 107.61861,
+      },
+
+    }
   }
 
+
+  handleImagePicker = () => {
+    const options = {
+      title: 'choose photo',
+      storageOptions: {
+        skipBackup: true,
+        path: '../../assets/image'
+      },
+    }
+    ImagePicker.showImagePicker(options, (response) => {
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        const source = response.uri;
+        this.setState({
+          // src :    [...this.state.src, source],
+          // data : {
+          //     ...this.state.data,
+          //     images : [
+          //         ...this.state.data.images,
+          //         source.uri
+          //     ]
+          // }
+
+          photo: source
+        })
+      }
+    })
+  }
+  onProvinceChange = async (value) => {
+
+    await this.setState({
+      selectedProvince: value
+    })
+    console.log(value)
+    const cities = await Axios.get(`http://dev.farizdotid.com/api/daerahindonesia/provinsi/${this.state.selectedProvince}/kabupaten`)
+
+    this.setState({
+      cities: cities.data.kabupatens
+    })
+  }
+  onCityChange = async (value) => {
+    await this.setState({
+      selectedCity: value
+    })
+
+    const selectedCityName = this.state.cities.filter((data) => (
+      data.id === this.state.selectedCity
+    ))
+    this.setState({
+      data: {
+        ...this.state.data,
+        city: selectedCityName[0].nama
+
+      }
+    })
+  }
+
+  handleChange = (text, name) => {
+    this.setState({
+      [name]: text
+    })
+  }
+  async componentWillMount() {
+    const token = await AsyncStorage.getItem('token')
+    this.setState({
+        token: token
+    })
+}
+
+  //   onAds = () => {
+  //     this.actAdsAysync()
+  // }
+
+  // async componentWillMount() {
+  //     const token = await AsyncStorage.getItem('key')
+  //     this.setState({
+  //         key: token
+  //     })
+  // }
+
+  // actAdsAysync = async () => {
+  //     // try {
+  //     let tempUser = {
+  //               name_kost: state.name_kost,
+  //               price: state.price,
+  //               description: state.description,
+  //               address_kost: state.address_kost,
+  //               longitude: state.region.longitude,
+  //               latitude: state.region.latitude
+  //     }
+  //     await axios.post('https://papakost.herokuapp.com/api/dorm', tempUser, {
+  //         headers: {
+  //             authorization: 'Bearer ' + AsyncStorage.getItem('key')
+  //         }
+  //     })
+  //         .then((response) => {
+  //             alert(tempUser)
+  //             this.props.navigation.navigate('LoginStack')
+  //         })
+  //         .catch((error) => {
+  //             alert(error)
+  //         });
+  // }
+  onAds = async () => {
+    let tempDorms = {
+      name_kost: this.state.name_kost,
+      price: this.state.price,
+      stock_room: this.state.stock_room,
+      description: this.state.description,
+      address_kost: this.state.address_kost,
+      longitude: this.state.region.longitude,
+      latitude: this.state.region.latitude
+    }
+    await axios.post(URL_API +'dorm', tempDorms, {
+        headers: {
+            authorization: await AsyncStorage.getItem('token')
+        }
+    })
+        .then((response) => {
+            alert(tempDorms)
+            this.props.navigation.navigate('Explore')
+        })
+        .catch((error) => {
+            alert(error)
+        });
+}
+
+  handleRegionChange = (region) => {
+    this.setState({
+      region,
+      data: {
+        ...this.state.data,
+        region: {
+          latitude: region.latitude,
+          longitude: region.longitude,
+        }
+      }
+    })
+    if (this.marker) {
+      this.marker._component.animateMarkerToCoordinate(region, 100);
+    }
+
+  }
   onRegionChange(region) {
     this.setState({ region });
   }
   render() {
     const logo = require('../../assets/photo.png')
-    const { checkbarang, checkjasa, photo } = this.state;
+    const { width, height } = Dimensions.get('window')
+    console.warn(this.state.photo);
     return (
       <View>
         <ScrollView>
           <View style={styles.container}>
-            <StatusBar backgroundColor='#FF9800' barStyle='light-content' />
-            <Text style={styles.font}>Title</Text>
+            <StatusBar backgroundColor='white' barStyle='dark-content' />
+            {/* title of kost */}
+            <Text style={styles.font1}>Title</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Insert Here' />
+              <Input style={styles.inputcolor} placeholder='ex. Pondok rayu'
+                onChangeText={text => this.handleChange(text, "name_kost")}
+                value={this.state.title}
+              />
               <Icon name='star' style={styles.icon} />
             </Item>
-            <Text style={styles.font}>Price of Item</Text>
+            {/* address kost */}
+            <Text style={styles.font}>Address</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} keyboardType={'numeric'} placeholder='Insert Here' />
+              <Input style={styles.inputcolor} placeholder='ex. Jl. kenanga 12 No. 6 RT/RW 01/02'
+                onChangeText={text => this.handleChange(text, "address_kost")}
+                value={this.state.address_kost} />
+            </Item>
+            {/* price kos */}
+            <Text style={styles.font}>Price</Text>
+            <Item style={styles.input}>
+              <Input style={styles.inputcolor} keyboardType={'numeric'} placeholder='Insert Price Per Month'
+                onChangeText={text => this.handleChange(text, "price")}
+                value={this.state.price} />
               <Icon name='star' style={styles.icon} />
             </Item>
-            <Text style={styles.font}>Description</Text>
+            <Text style={styles.font}>Stock Rooms</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Insert Here' />
+              <Input style={styles.inputcolor} keyboardType={'numeric'} placeholder='Insert Stock Rooms'
+                onChangeText={text => this.handleChange(text, "stock_room")}
+                value={this.state.stock_room} />
               <Icon name='star' style={styles.icon} />
             </Item>
-            <Text style={styles.font}>Category</Text>
-            <View style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}>
-              <View style={{ width: 40, height: 40, }}>
+
+            {/* complited address */}
+            <Text style={styles.font}>Search</Text>
+            <Item regular style={{ marginTop: 5 }}>
+              <Icon style={styles.icon} active name='search' />
+              <Input style={{ borderColor: 'red' }} placeholder='Search Here' />
+            </Item>
+            <MapView style={styles.map}
+              region={this.state.region}
+              onRegionChangeComplete={this.handleRegionChange}
+            >
+              <Marker.Animated
+                ref={marker => {
+                  this.marker = marker;
+                }}
+                coordinate={this.state.markerRegion}
+              />
+            </MapView>
+
+            {/* <Button style={styles.button} color="#FF9800" mode="contained" onPress={() => console.log('Pressed')}>
+              Edit Location
+            </Button> */}
+
+            {/* lat long */}
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ flex: 1, paddingLeft: 5, paddingRight: 5, }}>
+                <Item style={styles.input}>
+                  <Input editable={false} value={this.state.region.longitude.toString()} />
+                </Item>
+              </View>
+
+              <View style={{ flex: 1, paddingLeft: 5, paddingRight: 5, }}>
+                <Item style={styles.input}>
+                  <Input editable={false} value={this.state.region.latitude.toString()} />
+                </Item>
+              </View>
+            </View>
+
+            {/* Location */}
+            <Item>
+              <Label>Provinsi</Label>
+              <Picker
+                note
+                mode="dropdown"
+                style={{ width: 120, color: 'black', }}
+                selectedValue={this.state.selectedProvince}
+                onValueChange={this.onProvinceChange}
+
+              >
+
+                {this.state.province.map((data, index) => (
+                  <Picker.Item key={index} label={data.nama} value={data.id} />
+                ))}
+              </Picker>
+            </Item>
+            <Item>
+              <Label>Kota/Kabupaten</Label>
+              <Picker
+                note
+                mode="dropdown"
+                style={{ width: 120, color: 'black', }}
+                selectedValue={this.state.selectedCity}
+                onValueChange={this.onCityChange}
+              >
+                {this.state.cities && (this.state.cities.map((data, index) => (
+                  <Picker.Item key={index} label={data.nama} value={data.id} />
+                )))}
+              </Picker>
+            </Item>
+
+            {/* Picture */}
+            <Text style={styles.font}>Picture</Text>
+            <View style={{ height: 200, width: '100%', padding: 5 }}>
+              <Image source={{ uri: this.state.photo }} style={{ height: '100%', width: '100%', resizeMode: 'cover' }} />
+            </View>
+            <Button onPress={this.handleImagePicker} style={{ borderRadius: 10, backgroundColor: '#FF9800', width: 200 }}>
+              <Text>Upload Gambar</Text>
+            </Button>
+
+            {/* Category */}
+            {/* <Text style={styles.font}>Category</Text>
+            <View style={{flex: 1, flexDirection: 'row', marginTop:5}}>
+              <View style={{width: 40, height: 40, }}>
                 <Checkbox style={styles.input}
-                  status={checkbarang ? 'checked' : 'unchecked'}
+                  status={checkbarang? 'checked' : 'unchecked'}
                   onPress={() => { this.setState({ checkbarang: !checkbarang }); }}
                 />
               </View>
-              <View style={{ width: 140, height: 40, }} >
-                <Text style={{ marginTop: 8, marginLeft: 2 }}>Item</Text>
+              <View style={{width: 140, height: 40,}} >
+                <Text style={{marginTop:8,marginLeft:2}}>Item</Text>
               </View>
-              <View style={{ width: 40, height: 40, }}>
+              <View style={{width: 40, height: 40, }}>
                 <Checkbox style={styles.input}
                   status={checkjasa ? 'checked' : 'unchecked'}
                   onPress={() => { this.setState({ checkjasa: !checkjasa }); }}
                 />
               </View>
-              <View style={{ width: 140, height: 40, }}>
-                <Text style={{ marginTop: 8, marginLeft: 2 }}>Service</Text>
+              <View style={{width: 140, height: 40, }}>
+                <Text style={{marginTop:8,marginLeft:2}}>Service</Text>
               </View>
-            </View>
-            <Text style={styles.font}>Search</Text>
-            <Item regular style={{ marginTop: 5 }}>
-              <Icon style={styles.icon} active name='search' />
-              <Input style={{ borderColor: 'red' }} placeholder='Insert Here' />
-            </Item>
-            <Button style={styles.button} mode="contained" onPress={() => console.log('Pressed')}>
-              Edit Location
-            </Button>
-            <MapView
-              provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-              style={styles.map}
-              region={{
-                latitude: -6.301795,
-                longitude: 106.735051,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-              }}
+            </View> */}
 
-            >
-              <Marker
-                coordinate={
-                  {
-                    latitude: -6.301645,
-                    longitude: 106.735260
-                  }
-                }
-                title={"marker.title"}
-                description={"marker.description"}
-              />
-            </MapView>
-            <Text style={styles.font}>Address</Text>
+            {/* description kos */}
+            <Text style={styles.font}>Description</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Insert Here' />
-            </Item>
-            <Text style={styles.font}>Picture</Text>
-            <TouchableHighlight underlayColor="white" onPress={this.handleChoosePhoto}>
-              {/* onPress={this.props}  */}
-              <Image
-                style={styles.logo}
-                source={logo}
-              />
-            </TouchableHighlight>
-
-            <Text style={{ paddingTop: 2, fontSize: 16, }}>Name</Text>
-            <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Insert Here' />
+              <Input style={styles.inputcolor} placeholder='Insert Here'
+                onChangeText={text => this.handleChange(text, "description")}
+                value={this.state.description} />
               <Icon name='star' style={styles.icon} />
             </Item>
+
+            {/* facility */}
+            {/* <Text style={styles.font}>Facility</Text>
+            <Item style={styles.input}>
+              <Input style={styles.inputcolor} placeholder='Insert Here'
+              onChangeText={text =>this.handleChange(text, "facility")}
+              value={this.state.facility}/>
+              <Icon name='star' style={styles.icon}/>
+            </Item> */}
+
+
+
+            {/* name of owner */}
+            <Text style={{ paddingTop: 2, fontSize: 16, }}>Name</Text>
+            <Item style={styles.input}>
+              <Input style={styles.inputcolor} placeholder='Owner Name'
+                onChangeText={text => this.handleChange(text, "name")}
+                value={this.state.name} />
+              <Icon name='star' style={styles.icon} />
+            </Item>
+
+            {/* no handphone owner */}
             <Text style={styles.font}>No Telpon / Hp</Text>
             <Item style={styles.input}>
-              <Input style={styles.inputcolor} placeholder='Insert Here' />
+              <Input style={styles.inputcolor} placeholder='Owner Phone'
+                onChangeText={text => this.handleChange(text, "no_tlp")}
+                value={this.state.no_tlp} />
               <Icon name='star' style={styles.icon} />
             </Item>
           </View>
-
         </ScrollView>
-        <View style={styles.viewbutton}>
-          <Button style={styles.buttonfooter} mode="contained" onPress={() => console.log('Pressed')}>
-            SUBMIT
+        <View style={{ flex: 1 }}>
+          <View style={{ position: 'absolute', bottom: 0, alignSelf: 'center', backgroundColor: "#FFFFFF", width: width * 100 / 100, }}>
+            <Button style={{ marginLeft: width * 5 / 100, marginRight: width * 5 / 100, marginTop: width * 2 / 100, marginBottom: width * 2 / 100, width: width * 90 / 100, height: 40, alignItems: 'center', alignContent: 'center', borderRadius: 20 }} color="#FF9800" mode="contained" onPress={() => { this.onAds(this.state) }}>
+              SUBMIT
               </Button>
+          </View>
         </View>
       </View>
     );
@@ -157,39 +392,25 @@ class Ads extends Component {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 25,
+    padding: 15,
     marginBottom: 40
 
-  },
-  viewbutton: {
-    position: 'absolute',
-    bottom: 0,
-    alignSelf: 'center',
-    backgroundColor: "#FFFFFF",
-    width: width * 100 / 100,
-    flex: 1
   },
   font: {
     marginTop: 15,
     fontSize: 16,
   },
-  buttonSmall: {
+  font1: {
+    marginTop: 5,
+    fontSize: 16,
+  },
+  button: {
     marginTop: 8,
     width: 150,
-    height: 40,
-    color:"#FF9800"
+    height: 40
   },
   buttonfooter: {
-    marginLeft: (width * 5 / 100),
-    marginRight: (width * 5 / 100),
-    marginTop: (width * 2 / 100),
-    marginBottom: (width * 2 / 100),
-    width: (width * 90 / 100),
-    height: 40,
-    alignItems: 'center',
-    alignContent: 'center',
-    borderRadius: 20,
-    color:"#FF9800"
+
   },
   input: {
     borderColor: "#FF9800",

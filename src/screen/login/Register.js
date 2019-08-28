@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Item, Input, Icon } from 'native-base';
 import axios from "axios";
+import AsyncStorage from '@react-native-community/async-storage';
 import { URL_API } from 'react-native-dotenv'
 class Register extends Component {
   static navigationOptions = {
@@ -48,7 +49,8 @@ class Register extends Component {
         }
       })
       if (response) {
-        replace("ClassLogin", { handleLogin: handleLogin })
+        AsyncStorage.setItem('token', response.data.token)
+        this.props.navigation.navigate('RootStack')
       }
     } catch (err) {
       console.log(err)

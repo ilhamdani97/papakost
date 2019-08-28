@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, FlatList,ActivityIndicator, Text, Dimensions, TouchableOpacity, Share, ScrollView, TouchableHighlight } from 'react-native';
+import { StyleSheet, TextInput, FlatList, ActivityIndicator, Text, Dimensions, TouchableOpacity, Share, ScrollView, TouchableHighlight } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { View } from 'native-base';
 import { Card, Icon } from "react-native-elements";
@@ -19,7 +19,7 @@ class SearchPage extends Component {
         super(props)
         this.state = {
             detail: [],
-            dorms: null
+            data: null
         };
     }
     toRupiah = (price) => {
@@ -30,6 +30,12 @@ class SearchPage extends Component {
     }
     componentDidMount() {
         this.props.getData()
+    }
+    async componentWillMount() {
+        this.setState(
+            { data: await this.props.dorms.data },
+
+        )
     }
     static navigationOptions =
         {
@@ -42,16 +48,15 @@ class SearchPage extends Component {
 
     render() {
         const { width, height } = Dimensions.get('window');
-        
-        if (!this.state.dorms) {
+        if (!this.state.data) {
             return (
-              <ActivityIndicator
-                animating={true}
-                style={styles.indicator}
-                size="large"
-              />
+                <ActivityIndicator
+                    animating={true}
+                    style={styles.indicator}
+                    size="large"
+                />
             );
-          }
+        }
         return (
             <View style={{ backgroundColor: 'white', marginBottom: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -61,7 +66,7 @@ class SearchPage extends Component {
                         />
                         <TextInput style={styles.header} placeholder="Search Here" />
                     </Appbar.Header>
-                    
+
                     {this.props.dorms.data.map((item, i) => (
                         <View key={i}>
                             <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { dorms: item })} underlayColor="white">
@@ -123,7 +128,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 80
-      },
+    },
     row: {
         padding: 5,
         marginBottom: 5,

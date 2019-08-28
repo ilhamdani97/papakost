@@ -46,7 +46,7 @@ class Login extends Component {
         handphone: this.state.textHandphone,
         password: this.state.textPassword
       }
-      await axios.post(`${URL_API}`, {
+      await axios.post(`${URL_API}login`, {
         no_tlp: tempUser.handphone,
         password: tempUser.password
       })
