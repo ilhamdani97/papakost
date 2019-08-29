@@ -40,9 +40,10 @@ class SearchPage extends Component {
 
     render() {
         const { width, height } = Dimensions.get('window');
-        if (this.props.dorms.data==null) {
+        if (this.props.dorms.isLoading==true) {
             return (
                 <ActivityIndicator
+                    color="#FF9800"
                     animating={true}
                     style={styles.indicator}
                     size="large"
@@ -65,7 +66,7 @@ class SearchPage extends Component {
                             <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { dorms: item })} underlayColor="white">
                                 <View style={{ flex: 1, width: width * 100 / 100, }} >
                                     <Card style={{ marginTop: 10 }}
-                                        image={{ uri: item.image }}
+                                        image={{ uri: `http://192.168.1.25:3000/images/${item.image}` }}
                                         containerStyle={{ padding: 2 }}
                                     >
                                         <Text style={{ marginBottom: 10 }}>
@@ -80,7 +81,7 @@ class SearchPage extends Component {
                                         <View style={{ flex: 1, flexDirection: 'row', marginTop: 6 }}>
                                             <View style={{ width: width * 70 / 100 }} >
                                                 <View style={{ height: 26, width: 130, backgroundColor: "#FF9800", borderRadius: 50 }}>
-                                                    <Text style={{ fontSize: 13, marginTop: 2, color: "white", textAlign: "center", justifyContent: "center" }}>{item.booking_availabel}</Text>
+                                                    <Text style={{ fontSize: 13, marginTop: 2, color: "white", textAlign: "center", justifyContent: "center" }}>Booking Available</Text>
                                                 </View>
                                             </View>
                                             <View style={{ width: width * 30 / 100 }} >

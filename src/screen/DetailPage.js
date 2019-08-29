@@ -53,7 +53,7 @@ export default class DetailPage extends Component {
               onPress={() => this.props.navigation.goBack()}
             />
           </Appbar.Header>
-          <Image source={{ uri: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-01/cPEYt5ij-540x720.jpg' }}
+          <Image source={{ uri: `http://192.168.1.25:3000/images/${data.image}` }}
             style={{ width: width * 100 / 100, height: 200, }} />
           <View style={{ flexDirection: "row", paddingTop: 15, paddingLeft: 20 }}>
             <View >

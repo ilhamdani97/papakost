@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
+import {Image} from 'react-native'
 import {
   ActivityIndicator,
   StyleSheet,
@@ -34,10 +35,11 @@ class RootStack extends Component {
   render() {
     return (
       <View style={[styles.container, styles.horizontal]}>
-        <Text style={{
-          fontSize: 20,
-          fontWeight: 'bold'
-        }}>Please Wait</Text>
+        <Image
+                style={{ width: 300, height: 80, justifyContent: 'center', alignItems: 'center',marginBottom:10 }}
+                source={require('../../image/papakost.png')}
+              />
+        
         <ActivityIndicator size={50} color="#FF9800" />
       </View>
     );

@@ -1,11 +1,11 @@
 import axios from 'axios'
 import * as types from '../types/type'
-import { API } from 'react-native-dotenv'
+import { APIPAPA } from 'react-native-dotenv'
 export const getData = () => ({
     type: "SHOW_DATA_DORMS",
     payload: axios({
         method: 'GET',
-        url: `${API}dorms`
+        url: `${APIPAPA}dorms`
     })
 })
 

@@ -7,7 +7,7 @@ import { Marker } from 'react-native-maps';
 import ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios'
-import { API } from 'react-native-dotenv'
+import { APIPAPA } from 'react-native-dotenv'
 
 class Ads extends Component {
   static navigationOptions = {
@@ -124,8 +124,8 @@ class Ads extends Component {
       stock_room: this.state.stock_room,
       description: this.state.description,
       address_kost: this.state.address_kost,
-      // provinsi: this.state.provinsi,
-      // kabupaten: this.state.kabupaten,
+      provinsi: this.state.provinsi,
+      kabupaten: this.state.kabupaten,
       longitude: this.state.region.longitude,
       latitude: this.state.region.latitude,
       image: this.state.image
@@ -136,25 +136,24 @@ class Ads extends Component {
     data.append('price', this.state.price)
     data.append('stock_room', this.state.stock_room)
     data.append('description', this.state.description)
-    // data.append('provinsi', this.state.provinsi)
-    // data.append('kabupaten', this.state.kabupaten)
+    data.append('provinsi', this.state.provinsi)
+    data.append('kabupaten', this.state.kabupaten)
     data.append('address_kost', this.state.address_kost)
     data.append('longitude', this.state.region.longitude)
     data.append('latitude', this.state.region.latitude)
     data.append('images', this.state.image
     )
 
-    await axios.post(API + 'dorm', data, {
+    await axios.post(APIPAPA + 'dorm', data, {
       headers: {
         authorization: await AsyncStorage.getItem('token'), 'Content-Type': 'multipart/form-data'
       },
     })
       .then((response) => {
-        alert(tempDorms)
         this.props.navigation.navigate('Explore')
       })
       .catch((error) => {
-        alert(error)
+        console.log(error)
       });
   }
 
