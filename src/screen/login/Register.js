@@ -30,35 +30,40 @@ class Register extends Component {
       [name]: text
     })
   }
-  onRegister = async state => {
+  onRegister = async () => {
     try {
-      const { replace } = this.props.navigation
-      const handleLogin = this.props.navigation.getParam(
-        "handleLogin",
-        "false"
-      );
-      const response = await axios({
-        method: "post",
-        url: `${URL_API}register`,
-        data: {
-          email: state.email,
-          user_name: state.user_name,
-          full_name: state.full_name,
-          no_tlp: state.no_tlp,
-          password: state.password
-        }
-      })
-      if (response) {
-        AsyncStorage.setItem('token', response.data.token)
-        this.props.navigation.navigate('RootStack')
+      let tempUser = {
+        email: this.state.email,
+        user_name: this.state.user_name,
+        full_name: this.state.full_name,
+        no_tlp: this.state.no_tlp,
+        password: this.state.password
       }
-    } catch (err) {
-      console.log(err)
+      await axios.post(`${URL_API}register`, {
+        email: tempUser.email,
+        user_name: tempUser.user_name,
+        full_name: tempUser.full_name,
+        no_tlp: tempUser.no_tlp,
+        password: tempUser.password
+      })
+        .then((response) => {
+          if (typeof response.data.token !== 'undefined') {
+            AsyncStorage.setItem('token', response.data.token)
+            this.props.navigation.navigate('RootStack')
+          } else {
+            alert(response.data.message)
+          }
+        })
+        .catch((error) => {
+          alert(error)
+        })
+    } catch (e) {
+      console.log(e)
     }
   }
   render() {
     return (
-<ScrollView>
+      <ScrollView>
         <View style={styles.container}>
           <Appbar.Header style={{ backgroundColor: '#FF9800' }}>
             <Appbar.BackAction color="white"
@@ -76,7 +81,7 @@ class Register extends Component {
               <Text style={{ paddingTop: 20, color: 'white', fontSize: 20, paddingBottom: 10 }}>Register</Text>
             </View>
           </View>
-          
+
           <View style={{ padding: 20 }}>
 
             <View style={{ paddingTop: 20 }}>
@@ -98,7 +103,7 @@ class Register extends Component {
                 />
               </Item>
             </View>
-            
+
             <View style={{ paddingTop: 20 }}>
               <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
                 <Icon style={styles.icon} active name='paper' />
@@ -108,9 +113,6 @@ class Register extends Component {
                 />
               </Item>
             </View>
-
-
-
             <View style={{ paddingTop: 20 }}>
               <Item regular style={{ borderRadius: 20, Colors: '#FF9800' }}>
                 <Icon style={styles.icon} active name='keypad' />
@@ -130,9 +132,7 @@ class Register extends Component {
                 />
               </Item>
             </View>
-
           </View>
-
           <View style={{ padding: 20 }}>
             <Button style={{ height: 40, borderRadius: 25, backgroundColor: '#FF9800' }} color="black" mode="contained"
               onPress={() => {

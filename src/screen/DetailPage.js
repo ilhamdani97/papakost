@@ -4,10 +4,30 @@ import { Appbar, Button } from 'react-native-paper';
 import { Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import AsyncStorage from '@react-native-community/async-storage'
 import { Marker } from 'react-native-maps';
 
 export default class DetailPage extends Component {
-
+  state = {
+    bookingLogin: false,
+    position: 1,
+    interval: null,
+  }
+  componentDidMount() {
+    this.check()
+  }
+  check = async () => {
+    const fetchData = await AsyncStorage.getItem('token')
+    if (fetchData) {
+      this.setState({
+        bookingLogin: true
+      })
+    } else {
+      this.setState({
+        bookingLogin: false
+      })
+    }
+  }
   constructor(props) {
     super(props)
     params = props.navigation.state.params.rows
@@ -23,7 +43,6 @@ export default class DetailPage extends Component {
     const { navigation } = this.props;
     const { width, height } = Dimensions.get('window');
     const data = navigation.getParam('dorms');
-
 
     return (
       <View>
@@ -106,7 +125,15 @@ export default class DetailPage extends Component {
             <Text style={{ color: 'black', paddingTop: 10 }}>{data.description}</Text>
             <View style={{ borderRadius: 8, alignItems: 'center', backgroundColor: '#FF9800', marginTop: 15, marginBottom: 10, height: 80 }}>
               <Text style={{ color: 'white', fontSize: 20, paddingLeft: 5, paddingBottom: 4 }}>{this.toRupiah(data.price)}</Text>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingDate')}>
+              <TouchableOpacity 
+               onPress={() => {
+                if (this.state.doLogin) {
+                  this.props.navigation.navigate('BookingDate')
+                } else {
+                  this.props.navigation.navigate('LoginStart')
+                }
+                // alert(this.state.udahLogin)
+              }}>
                 <Button style={{ padding: 2, margin: 2, backgroundColor: '#FF9800', borderRadius: 5, borderWidth: 1, borderColor: '#fff' }}><Text style={{ color: '#fff' }}>Booking</Text></Button>
               </TouchableOpacity>
             </View>

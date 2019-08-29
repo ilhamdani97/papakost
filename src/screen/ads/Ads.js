@@ -21,7 +21,7 @@ class Ads extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      image:"",
+      image: "",
       name_kost: "",
       price: "",
       stock_room: "",
@@ -113,9 +113,9 @@ class Ads extends Component {
   async componentWillMount() {
     const token = await AsyncStorage.getItem('token')
     this.setState({
-        token: token
+      token: token
     })
-}
+  }
 
   onAds = async () => {
     let tempDorms = {
@@ -142,19 +142,19 @@ class Ads extends Component {
 
 
 
-    await axios.post(URL_API +'dorm', data, {
-        headers: {
-            authorization: await AsyncStorage.getItem('token'),  'Content-Type': 'multipart/form-data'
-        }, 
+    await axios.post(URL_API + 'dorm', data, {
+      headers: {
+        authorization: await AsyncStorage.getItem('token'), 'Content-Type': 'multipart/form-data'
+      },
     })
-        .then((response) => {
-            alert(tempDorms)
-            this.props.navigation.navigate('Explore')
-        })
-        .catch((error) => {
-            alert(error)
-        });
-}
+      .then((response) => {
+        alert(tempDorms)
+        this.props.navigation.navigate('Explore')
+      })
+      .catch((error) => {
+        alert(error)
+      });
+  }
 
   handleRegionChange = (region) => {
     this.setState({
@@ -177,7 +177,7 @@ class Ads extends Component {
   }
   render() {
     // console.log(this.state);
-    
+
     const logo = require('../../assets/photo.png')
     const { width, height } = Dimensions.get('window')
     // console.warn(this.state.photo);
@@ -290,7 +290,7 @@ class Ads extends Component {
               <Text>Upload Gambar</Text>
             </Button>
 
-           
+
             {/* description kos */}
             <Text style={styles.font}>Description</Text>
             <Item style={styles.input}>

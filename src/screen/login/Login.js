@@ -1,8 +1,7 @@
 
 import React, { Component } from 'react';
 import { Button, Checkbox, Appbar } from 'react-native-paper';
-import { StyleSheet, TouchableHighlight, View, Text, Image, StatusBar } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { StyleSheet, TouchableHighlight, View, Text, Image, StatusBar,Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Item, Input, Icon } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -55,18 +54,18 @@ class Login extends Component {
             AsyncStorage.setItem('token', response.data.token)
             this.props.navigation.navigate('LoginStack')
           } else {
-            alert('Wrong No Hanphone and Password ...')
+            alert(response.data.message)
           }
         })
-        .catch((response) => {
-          alert('Wrong No Hanphone and Password ...')
+        .catch((error) => {
+          alert(error)
         })
     } catch (e) {
       console.log(e)
     }
-
-  };
+  }
   render() {
+    const { width, height } = Dimensions.get('window')
     const { checklogin } = this.state;
     return (
       <ScrollView>
@@ -124,23 +123,21 @@ class Login extends Component {
                 </View>
               </TouchableHighlight>
             </View>
-
           </View>
-
           <View style={{ paddingLeft: 20, paddingRight: 20, }}>
             <Button style={{ height: 40, borderRadius: 25, backgroundColor: '#FF9800' }} color="black" mode="contained" onPress={() => this.aksiLogin()}>
               Login
-            </Button>
+          </Button>
           </View>
           <View style={{ flex: 1, flexDirection: 'row', marginTop: 8 }}>
-            <View style={{ width: 210, height: 40, }}>
+            <View style={{ width:width*60/100, height: 40, }}>
               <Text style={{ marginTop: 10, textAlign: 'right', }}>Don't have an account ? </Text>
             </View>
-            <View style={{ width: 60, height: 40, }}>
+            <View style={{ width:width*40/100, height: 40, }}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate('Register')}>
-                <Text style={{ marginTop: 10, textDecorationLine: 'underline', color: "#FF9800", textAlign: 'center', }}>
+                <Text style={{ marginTop: 10, textDecorationLine: 'underline', color: "#FF9800", textAlign: 'left', }}>
                   Register
-                </Text>
+              </Text>
               </TouchableHighlight>
             </View>
           </View>

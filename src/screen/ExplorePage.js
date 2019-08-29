@@ -34,6 +34,11 @@ const data = [
 ];
 
 export default class ExplorePage extends Component {
+  state = {
+    isLogin: false,
+    position: 1,
+    interval: null,
+  }
   componentDidMount() {
     this.checkLogin()
   }
@@ -49,11 +54,7 @@ export default class ExplorePage extends Component {
       })
     }
   }
-  state = {
-    isLogin: false,
-    position: 1,
-    interval: null,
-  }
+  
   componentWillMount() {
     this.setState({
       interval: setInterval(() => {

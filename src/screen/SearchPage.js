@@ -6,20 +6,12 @@ import { Card, Icon } from "react-native-elements";
 import { connect } from 'react-redux';
 import * as actionDorms from '../redux/actions/dorms';
 
-// const options = [
-//     <Text style={{ color: '#FF9800' }}>A-Z</Text>,
-//     <Text style={{ color: '#FF9800' }}>Newest</Text>,
-//     <Text style={{ color: '#FF9800' }}>High To Low Price</Text>,
-//     <Text style={{ color: '#FF9800' }}>Low To High Price</Text>,
-//     <Text style={{ color: '#FF9800' }}>The Best Rating</Text>,
-//     <Text style={{ color: 'red' }}>Cancel</Text>
-// ]
 class SearchPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
             detail: [],
-            data: ""
+            data: null
         };
     }
     toRupiah = (price) => {
@@ -47,10 +39,8 @@ class SearchPage extends Component {
         };
 
     render() {
-        console.log(this.state.data);
-        
         const { width, height } = Dimensions.get('window');
-        if (!this.state.data) {
+        if (this.props.dorms.data==null) {
             return (
                 <ActivityIndicator
                     animating={true}
@@ -60,6 +50,7 @@ class SearchPage extends Component {
             );
         }
         return (
+
             <View style={{ backgroundColor: 'white', marginBottom: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Appbar.Header style={{ backgroundColor: 'transparent' }}>
@@ -70,12 +61,11 @@ class SearchPage extends Component {
                     </Appbar.Header>
                     
                     {this.props.dorms.data.map((item, i) => (
-                        
                         <View key={i}>
                             <TouchableHighlight onPress={() => this.props.navigation.navigate('Detail', { dorms: item })} underlayColor="white">
                                 <View style={{ flex: 1, width: width * 100 / 100, }} >
                                     <Card style={{ marginTop: 10 }}
-                                        image={{ uri:`http://192.168.1.24:3000/images/${item.image}` }}
+                                        image={{ uri: item.image }}
                                         containerStyle={{ padding: 2 }}
                                     >
                                         <Text style={{ marginBottom: 10 }}>
@@ -90,7 +80,7 @@ class SearchPage extends Component {
                                         <View style={{ flex: 1, flexDirection: 'row', marginTop: 6 }}>
                                             <View style={{ width: width * 70 / 100 }} >
                                                 <View style={{ height: 26, width: 130, backgroundColor: "#FF9800", borderRadius: 50 }}>
-                                                    <Text style={{ fontSize: 13, marginTop: 2, color: "white", textAlign: "center", justifyContent: "center" }}>Booking Available</Text>
+                                                    <Text style={{ fontSize: 13, marginTop: 2, color: "white", textAlign: "center", justifyContent: "center" }}>{item.booking_availabel}</Text>
                                                 </View>
                                             </View>
                                             <View style={{ width: width * 30 / 100 }} >
