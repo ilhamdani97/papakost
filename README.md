@@ -57,7 +57,7 @@ follow these steps to install
 
 ```bash
 git clone https://github.com/ilhamdani97/papakost
-cd cari-kost
+cd papakost
 npm install
 npm start
 react-native run-ios #for ios
