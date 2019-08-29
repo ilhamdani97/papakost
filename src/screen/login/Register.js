@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Item, Input, Icon } from 'native-base';
 import axios from "axios";
 import AsyncStorage from '@react-native-community/async-storage';
-import { URL_API } from 'react-native-dotenv'
+import { API } from 'react-native-dotenv'
 class Register extends Component {
   static navigationOptions = {
     headerTintColor: 'white',
@@ -39,7 +39,7 @@ class Register extends Component {
         no_tlp: this.state.no_tlp,
         password: this.state.password
       }
-      await axios.post(`${URL_API}register`, {
+      await axios.post(`${API}register`, {
         email: tempUser.email,
         user_name: tempUser.user_name,
         full_name: tempUser.full_name,

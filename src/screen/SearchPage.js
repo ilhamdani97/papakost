@@ -55,7 +55,7 @@ class SearchPage extends Component {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Appbar.Header style={{ backgroundColor: 'transparent' }}>
                         <Appbar.BackAction color="black"
-                            onPress={() => this.props.navigation.goBack()}
+                            onPress={() => this.props.navigation.navigate('RootStack')}
                         />
                         <TextInput style={styles.header} placeholder="Search Here" />
                     </Appbar.Header>

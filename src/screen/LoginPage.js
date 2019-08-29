@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Paragraph, Button, Appbar } from 'react-native-paper';
-import { StyleSheet, TouchableHighlight, View, StatusBar } from 'react-native';
+import { StyleSheet, TouchableHighlight, View, StatusBar ,Dimensions} from 'react-native';
 import { Icon } from 'react-native-elements'
 
 class Loginnull extends Component {
@@ -12,6 +12,7 @@ class Loginnull extends Component {
     },
   };
   render() {
+    const { width, height } = Dimensions.get('window');
     return (
       <View style={styles.container}>
         <Appbar.Header style={{ backgroundColor: 'transparent' }}>
@@ -27,7 +28,7 @@ class Loginnull extends Component {
           />
           <Paragraph style={styles.padding0}>Please Login First For Unlock Your Happiness</Paragraph>
         </View>
-        <View style={{ backgroundColor: '#FF9800', borderTopLeftRadius: 80, borderTopRightRadius: 80, height: 300 }}>
+        <View style={{ backgroundColor: '#FF9800', borderTopLeftRadius: 80, borderTopRightRadius: 80, height:height*50/100 }}>
           <Button style={styles.padding} color="white" mode="contained" onPress={() => this.props.navigation.navigate('ClassLogin')}>
             <Paragraph style={{ color: 'black' }}>Login</Paragraph>
           </Button>

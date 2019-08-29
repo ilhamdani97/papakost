@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Item, Input, Icon } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-import { URL_API } from 'react-native-dotenv'
+import { API } from 'react-native-dotenv'
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -18,7 +18,7 @@ class Login extends Component {
     }
   }
   componentDidMount() {
-    axios.get(`${URL_API}users`)
+    axios.get(`${API}users`)
       .then(response => {
         this.setState({
           fatchUser: response.data
@@ -45,7 +45,7 @@ class Login extends Component {
         handphone: this.state.textHandphone,
         password: this.state.textPassword
       }
-      await axios.post(`${URL_API}login`, {
+      await axios.post(`${API}login`, {
         no_tlp: tempUser.handphone,
         password: tempUser.password
       })

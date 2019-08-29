@@ -7,7 +7,7 @@ import { Marker } from 'react-native-maps';
 import ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios'
-import { URL_API } from 'react-native-dotenv'
+import { API } from 'react-native-dotenv'
 
 class Ads extends Component {
   static navigationOptions = {
@@ -27,11 +27,20 @@ class Ads extends Component {
       stock_room: "",
       description: "",
       address_kost: "",
-      province: [],
       selectedCity: "",
       token: '',
-      selectedProvince: "",
-      cities: [],
+      tmpProv: '',
+      tmpProvName: '',
+      tmpKab: '',
+      tmpKabName: '',
+      tmpKec: '',
+      tmpKecName: '',
+      tmpKel: '',
+      tmpKelName: '',
+      dataProv: [],
+      dataKab: [],
+      dataKec: '',
+      dataKel: '',
       region: {
         latitude: -6.280229,
         longitude: 106.710818,
@@ -46,7 +55,27 @@ class Ads extends Component {
 
     }
   }
-
+  Province = async () => {
+    const responseTemporer = await axios.get("http://dev.farizdotid.com/api/daerahindonesia/provinsi");
+    await this.setState({
+      dataProv: responseTemporer.data.semuaprovinsi
+    })
+  }
+  Kab = async () => {
+    const responseTemporer = await axios.get(`http://dev.farizdotid.com/api/daerahindonesia/provinsi/${this.state.tmpProv}/kabupaten`);
+    await this.setState({
+      dataKab: responseTemporer.data.kabupatens
+    })
+  }
+  Kec = async () => {
+    await axios.get(`http://dev.farizdotid.com/api/daerahindonesia/provinsi/kabupaten/${this.state.tmpKab}/kecamatan`);
+  }
+  Kel = async () => {
+    await axios.get(`http://dev.farizdotid.com/api/daerahindonesia/provinsi/kabupaten/kecamatan/${this.state.tmpKec}/desa`);
+  }
+  componentDidMount() {
+    this.Province();
+  }
 
   handleImagePicker = () => {
     const options = {
@@ -76,35 +105,6 @@ class Ads extends Component {
     })
   }
 
-  onProvinceChange = async (value) => {
-
-    await this.setState({
-      selectedProvince: value
-    })
-    console.log(value)
-    const cities = await Axios.get(`http://dev.farizdotid.com/api/daerahindonesia/provinsi/${this.state.selectedProvince}/kabupaten`)
-
-    this.setState({
-      cities: cities.data.kabupatens
-    })
-  }
-  onCityChange = async (value) => {
-    await this.setState({
-      selectedCity: value
-    })
-
-    const selectedCityName = this.state.cities.filter((data) => (
-      data.id === this.state.selectedCity
-    ))
-    this.setState({
-      data: {
-        ...this.state.data,
-        city: selectedCityName[0].nama
-
-      }
-    })
-  }
-
   handleChange = (text, name) => {
     this.setState({
       [name]: text
@@ -124,6 +124,8 @@ class Ads extends Component {
       stock_room: this.state.stock_room,
       description: this.state.description,
       address_kost: this.state.address_kost,
+      // provinsi: this.state.provinsi,
+      // kabupaten: this.state.kabupaten,
       longitude: this.state.region.longitude,
       latitude: this.state.region.latitude,
       image: this.state.image
@@ -134,15 +136,15 @@ class Ads extends Component {
     data.append('price', this.state.price)
     data.append('stock_room', this.state.stock_room)
     data.append('description', this.state.description)
+    // data.append('provinsi', this.state.provinsi)
+    // data.append('kabupaten', this.state.kabupaten)
     data.append('address_kost', this.state.address_kost)
     data.append('longitude', this.state.region.longitude)
     data.append('latitude', this.state.region.latitude)
     data.append('images', this.state.image
     )
 
-
-
-    await axios.post(URL_API + 'dorm', data, {
+    await axios.post(API + 'dorm', data, {
       headers: {
         authorization: await AsyncStorage.getItem('token'), 'Content-Type': 'multipart/form-data'
       },
@@ -255,30 +257,39 @@ class Ads extends Component {
             <Item>
               <Label>Provinsi</Label>
               <Picker
-                note
-                mode="dropdown"
-                style={{ width: 120, color: 'black', }}
-                selectedValue={this.state.selectedProvince}
-                onValueChange={this.onProvinceChange}>
-
-                {this.state.province.map((data, index) => (
-                  <Picker.Item key={index} label={data.nama} value={data.id} />
-                ))}
+                selectedValue={this.state.tmpProv}
+                style={{ flex: 1 }}
+                onValueChange={async (itemValue, itemIndex) => {
+                  await this.setState({
+                    tmpProv: itemValue
+                  })
+                  if (this.state.tmpProv.length > 0) {
+                    this.Kab().then().catch();
+                  }
+                }} styles={{ fontSize: 18 }}>
+                {this.state.dataProv.map((item, index) => {
+                  return (
+                    <Picker.Item key={`${item.id}`} label={item.nama} value={item.id} />
+                  )
+                })}
               </Picker>
             </Item>
             <Item>
               <Label>Kota/Kabupaten</Label>
               <Picker
-                note
-                mode="dropdown"
-                style={{ width: 120, color: 'black', }}
-                selectedValue={this.state.selectedCity}
-                onValueChange={this.onCityChange}
-              >
-                {this.state.cities && (this.state.cities.map((data, index) => (
-                  <Picker.Item key={index} label={data.nama} value={data.id} />
-                )))}
-              </Picker>
+                  selectedValue={this.state.tmpKab}
+                  style={{ flex: 1 }}
+                  onValueChange={async (itemValue, itemIndex) =>
+                    await this.setState({
+                      tmpKab: itemValue
+                    })
+                  } styles={{ fontSize: 18 }}>
+                  {this.state.dataKab.map((item, index) => {
+                    return (
+                      <Picker.Item key={`${item.id}`} label={item.nama} value={item.id} />
+                    )
+                  })}
+                </Picker>
             </Item>
 
             {/* Picture */}
