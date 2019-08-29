@@ -56,7 +56,7 @@ follow these steps to install
 ### Frontend
 
 ```bash
-git clone https://github.com/chazi13/cari-kos.git
+git clone https://github.com/ilhamdani97/papakost
 cd cari-kost
 npm install
 npm start
