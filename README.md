@@ -1,11 +1,16 @@
 <h1 align="center">
-  <img src="./image/papakost.PNG" width="300"/><br>
+  <img src="./image/papakost.png" width="300"/><br>
 </h1>
-## Important
+
+## Important 
+
 This project is still on very early development stage. If you want to use for production, use it with your own risk.
 <br>More feature Coming Really Soon.
+
 ## Papa Kost
+
 Papa Kost Is an Aplication for Everyone finding boarding house
+
 ## Screenshots
 
 <p float="left">
@@ -17,24 +22,33 @@ Papa Kost Is an Aplication for Everyone finding boarding house
 
   <img src="./image/profile.PNG" width="200" height="350" alt="Order History"/>
 </p>
+
 ## Fitures
+
 - Choose House
 - House Detail
 - Booking List
 - Login
 - Register
 - Add Ads
+
 ## Why Papa Kost
+
 - Esay To Use this Application
 - It's React Native, so it support android & iOS by default
 - Express is one of the most starred javascript framework, and it is very easy to use
+
 ## Tech Stack
+
 - React Native for the Mobile Frontend
 - Node + Express Js for the Backend
+
 ## Prerequisites
+
 - Make sure You had been install NodeJs in your system [https://nodejs.org/](https://nodejs.org/)
 - Then install React Native [https://facebook.github.io/react-native/](https://facebook.github.io/react-native/)
 - Dont forget express ad the backend [https://expressjs.com/](https://expressjs.com/)
+
 ## Installation & Configuration
 
 follow these steps to install
@@ -66,7 +80,7 @@ npm install nodemon -D
 npm start
 ```
 
-## Support Us :)
+### Support Us :)
 
 - Stars this repository
 - Hire Us
