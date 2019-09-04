@@ -73,8 +73,8 @@ API_URL=http://YOUR_DOMAIN:YOUR_PORT
 ### Backend
 
 ```bash
-git clone https://github.com/chazi13/carikost-api.git
-cd carikost-api
+git https://github.com/ilhamdani97/APIPAPAKOST
+cd APIPAPAKOST
 npm install
 npm install nodemon -D
 npm start
