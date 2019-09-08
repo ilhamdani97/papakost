@@ -93,3 +93,4 @@ npm start
 - WA/TELEGRAM: +62 85703018642 (Taufiek Maulana)
 
 ## Download App (Demo usage only)
+ * [APPS/APK](https://drive.google.com/file/d/1aAIoEZ86IAgkNZOr5k0jjrfq3-BDudFI/view?usp=sharing)
